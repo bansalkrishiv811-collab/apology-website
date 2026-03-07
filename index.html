@@ -1,166 +1,230 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Apology Statement from Krishiv Bansal to Madhavi Verma</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Choose Wisely 😏</title>
 
 <style>
 
 body{
 margin:0;
 height:100vh;
-background-image:url("Sorry.jpg");
-background-size:cover;
-background-position:center;
-font-family:Arial, sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
+flex-direction:column;
+background:black;
 overflow:hidden;
+font-family:Arial;
+color:white;
 }
 
-/* white box */
-
-.box{
-width:90%;
-max-width:500px;
-padding:30px;
-background:rgba(255,255,255,0.92);
-border-radius:20px;
+h1{
+margin-bottom:40px;
 text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
-animation:fadeIn 2s;
 }
 
-/* typewriter */
+/* Buttons */
 
-.typewriter{
-overflow:hidden;
-border-right:3px solid #ff6b81;
-white-space:nowrap;
-margin:auto;
-animation:typing 3s steps(30,end), blink .8s infinite;
+.buttons{
+position:relative;
+display:flex;
+gap:40px;
 }
 
-@keyframes typing{
-from{width:0}
-to{width:100%}
+button{
+border:none;
+border-radius:12px;
+padding:20px 40px;
+font-size:22px;
+cursor:pointer;
+transition:0.25s;
 }
 
-@keyframes blink{
-0%{border-color:transparent}
-50%{border-color:#ff6b81}
-100%{border-color:transparent}
+#hellBtn{
+background:#ff3b3b;
+color:white;
+position:absolute;
 }
 
-/* floating hearts */
+#hmmBtn{
+background:#ff7ad9;
+color:white;
+}
+
+/* Hearts */
 
 .heart{
-position:fixed;
-bottom:-40px;
-pointer-events:none;
+position:absolute;
+bottom:-50px;
 animation:floatUp linear forwards;
 }
 
 @keyframes floatUp{
-
-0%{
+from{
 transform:translateY(0) scale(1);
 opacity:1;
 }
-
-100%{
-transform:translateY(-110vh) scale(1.6);
+to{
+transform:translateY(-120vh) scale(2);
 opacity:0;
 }
-
 }
 
-/* fade animation */
+/* Confetti */
 
-@keyframes fadeIn{
+.confetti{
+position:absolute;
+width:10px;
+height:10px;
+background:red;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
 from{
-opacity:0;
-transform:translateY(50px);
+transform:translateY(-20px) rotate(0deg);
 }
 to{
-opacity:1;
-transform:translateY(0);
+transform:translateY(100vh) rotate(720deg);
 }
 }
 
-/* button */
+/* Final screen */
 
-button{
-margin-top:20px;
-padding:12px 25px;
-border:none;
-border-radius:10px;
-background:#ff6b81;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:.3s;
+#finalScreen{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+opacity:0;
+pointer-events:none;
+transition:1s;
 }
 
-button:hover{
-background:#ff4757;
-transform:scale(1.08);
-}
-
-/* mobile */
-
-@media (max-width:600px){
-
-h2{
-font-size:20px;
-}
-
-p{
-font-size:14px;
-}
-
-button{
-font-size:14px;
-padding:10px 20px;
-}
-
+#finalScreen h2{
+font-size:45px;
+text-align:center;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="box">
+<h1>Choose one 😏</h1>
 
-<h2 class="typewriter">Hey...</h2>
-
-<p>Before you close this page, please give me a moment.</p>
-
-<button onclick="startLove()">Click here</button>
-
+<div class="buttons">
+<button id="hellBtn">GO TO HELL</button>
+<button id="hmmBtn">HMM...</button>
 </div>
 
+<div id="finalScreen">
+<h2>I knew you'd choose me ❤️</h2>
+<p>You had no other option anyway 😌</p>
+</div>
 
-<!-- MUSIC -->
-
-<audio id="bgmusic" loop>
-<source src="music.mp3" type="audio/mpeg">
+<audio id="music" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
 </audio>
-
 
 <script>
 
-/* floating hearts generator */
+let hellBtn = document.getElementById("hellBtn");
+let hmmBtn = document.getElementById("hmmBtn");
+let finalScreen = document.getElementById("finalScreen");
+let music = document.getElementById("music");
+
+let hellSize = 1;
+let hmmSize = 1;
+
+
+/* Teleporting button */
+
+function moveHellButton(){
+
+let x = Math.random() * (window.innerWidth - 200);
+let y = Math.random() * (window.innerHeight - 200);
+
+hellBtn.style.left = x + "px";
+hellBtn.style.top = y + "px";
+
+}
+
+moveHellButton();
+
+hellBtn.addEventListener("mouseover", () => {
+
+hellSize -= 0.1;
+hmmSize += 0.15;
+
+if(hellSize < 0.25) hellSize = 0.25;
+
+hellBtn.style.transform = `scale(${hellSize})`;
+hmmBtn.style.transform = `scale(${hmmSize})`;
+
+hmmBtn.innerText = "Pleaseee 🥺";
+
+moveHellButton();
+
+});
+
+
+/* When HMM clicked */
+
+hmmBtn.onclick = () => {
+
+finalScreen.style.opacity = 1;
+finalScreen.style.pointerEvents = "all";
+
+music.play();
+
+heartExplosion();
+confettiExplosion();
+
+};
+
+
+/* Floating hearts */
 
 function createHeart(){
 
-const heart=document.createElement("div");
+const heart = document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML = "❤️";
+
+heart.style.left = Math.random()*100 + "vw";
+
+heart.style.fontSize = (20 + Math.random()*40) + "px";
+
+heart.style.animationDuration = (3 + Math.random()*3) + "s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+}
+
+setInterval(createHeart,120);
+
+
+/* Heart explosion */
+
+function heartExplosion(){
+
+for(let i=0;i<200;i++){
+
+setTimeout(()=>{
+
+const heart = document.createElement("div");
 
 heart.classList.add("heart");
 
@@ -168,49 +232,44 @@ heart.innerHTML="❤️";
 
 heart.style.left=Math.random()*100+"vw";
 
-heart.style.fontSize=(25+Math.random()*40)+"px";
+heart.style.fontSize=(30+Math.random()*50)+"px";
 
-heart.style.animationDuration=(3+Math.random()*3)+"s";
+heart.style.animationDuration="3s";
 
 document.body.appendChild(heart);
 
-setTimeout(()=>{
-heart.remove();
-},6000);
+setTimeout(()=>heart.remove(),5000);
 
-}
-
-/* increase frequency */
-
-setInterval(createHeart,250);
-
-
-/* heart explosion */
-
-function heartBurst(){
-
-for(let i=0;i<25;i++){
-
-setTimeout(createHeart,i*40);
+},i*10)
 
 }
 
 }
 
 
-/* button click */
+/* Confetti */
 
-function startLove(){
+function confettiExplosion(){
 
-document.getElementById("bgmusic").play();
+for(let i=0;i<150;i++){
 
-heartBurst();
+const confetti=document.createElement("div");
 
-setTimeout(()=>{
+confetti.classList.add("confetti");
 
-location.href="page2.html";
+confetti.style.left=Math.random()*100+"vw";
 
-},1200);
+confetti.style.background=
+`hsl(${Math.random()*360},100%,50%)`;
+
+confetti.style.animationDuration=
+(2+Math.random()*3)+"s";
+
+document.body.appendChild(confetti);
+
+setTimeout(()=>confetti.remove(),5000);
+
+}
 
 }
 
