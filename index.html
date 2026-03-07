@@ -2,97 +2,98 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>AI Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fun Interactive Page</title>
 
 <style>
 
-body{
-font-family: Arial, Helvetica, sans-serif;
-background:#0f172a;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
+overflow:hidden;
+background:#0f172a;
 color:white;
+cursor:url("https://cur.cursors-4u.net/nature/nat-10/nat927.cur"), auto;
+}
+
+/* animated stars */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(white 1px, transparent 1px);
+background-size:40px 40px;
+animation:stars 60s linear infinite;
+opacity:0.2;
+}
+
+@keyframes stars{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
 }
 
 .container{
-width:420px;
-height:620px;
-background:#1e293b;
-border-radius:12px;
-display:flex;
-flex-direction:column;
-overflow:hidden;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
-}
-
-.header{
-background:#2563eb;
-padding:15px;
-font-size:20px;
 text-align:center;
-font-weight:bold;
+padding:30px;
 }
 
-.chat{
-flex:1;
-padding:15px;
-overflow-y:auto;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.message{
-padding:10px 14px;
-border-radius:10px;
-max-width:70%;
-word-wrap:break-word;
-}
-
-.user{
-background:#2563eb;
-align-self:flex-end;
-}
-
-.bot{
-background:#334155;
-align-self:flex-start;
-}
-
-.input-area{
-display:flex;
-padding:10px;
-background:#0f172a;
-}
-
-input{
-flex:1;
-padding:10px;
-border:none;
-border-radius:6px;
-outline:none;
+h1{
+margin-bottom:30px;
+font-size:32px;
 }
 
 button{
-margin-left:10px;
-padding:10px 16px;
+padding:15px 30px;
+font-size:18px;
 border:none;
-border-radius:6px;
-background:#2563eb;
-color:white;
+border-radius:10px;
 cursor:pointer;
+transition:0.2s;
+position:relative;
 }
 
-button:hover{
-background:#1d4ed8;
+#yes{
+background:#22c55e;
+color:white;
+margin-right:10px;
 }
 
-.loading{
-font-size:13px;
-opacity:0.7;
+#no{
+background:#ef4444;
+color:white;
+position:absolute;
+}
+
+.message{
+margin-top:30px;
+font-size:22px;
+min-height:30px;
+}
+
+/* mobile */
+
+@media(max-width:600px){
+
+h1{
+font-size:24px;
+}
+
+button{
+padding:12px 20px;
+font-size:16px;
+}
+
 }
 
 </style>
@@ -102,76 +103,54 @@ opacity:0.7;
 
 <div class="container">
 
-<div class="header">
-AI Chat
-</div>
+<h1>Do you like this page? ❤️</h1>
 
-<div class="chat" id="chat"></div>
+<button id="yes">Yes</button>
+<button id="no">No</button>
 
-<div class="input-area">
-<input id="input" placeholder="Type a message..." />
-<button onclick="sendMessage()">Send</button>
-</div>
+<div class="message" id="message"></div>
 
 </div>
 
 <script>
 
-const chat = document.getElementById("chat")
+const noBtn = document.getElementById("no")
+const yesBtn = document.getElementById("yes")
+const message = document.getElementById("message")
 
-function addMessage(text, type){
-const msg = document.createElement("div")
-msg.className = "message " + type
-msg.innerText = text
-chat.appendChild(msg)
-chat.scrollTop = chat.scrollHeight
-return msg
-}
+/* dodge button */
 
-function fakeAIResponse(message){
+noBtn.addEventListener("mouseover", () => {
 
-message = message.toLowerCase()
+const x = Math.random() * (window.innerWidth - 100)
+const y = Math.random() * (window.innerHeight - 50)
 
-if(message.includes("hello")) return "Hello 👋"
-if(message.includes("how are you")) return "I'm doing great!"
-if(message.includes("your name")) return "I'm your AI assistant."
-if(message.includes("bye")) return "Goodbye!"
-
-return "Interesting... tell me more."
-}
-
-function sendMessage(){
-
-const input = document.getElementById("input")
-const text = input.value.trim()
-
-if(text === "") return
-
-addMessage(text,"user")
-
-input.value=""
-
-const loading = addMessage("Typing...","bot loading")
-
-setTimeout(()=>{
-
-loading.remove()
-
-const response = fakeAIResponse(text)
-
-addMessage(response,"bot")
-
-},800)
-
-}
-
-document.getElementById("input").addEventListener("keypress",function(e){
-
-if(e.key === "Enter"){
-sendMessage()
-}
+noBtn.style.left = x + "px"
+noBtn.style.top = y + "px"
 
 })
+
+/* typing message */
+
+yesBtn.onclick = () => {
+
+const text = "💌 Aww thanks! You just unlocked the secret message: You're awesome!"
+let i = 0
+message.innerHTML = ""
+
+function type(){
+
+if(i < text.length){
+message.innerHTML += text.charAt(i)
+i++
+setTimeout(type,40)
+}
+
+}
+
+type()
+
+}
 
 </script>
 
