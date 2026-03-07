@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Plssss Open This 🙏</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+color:white;
+overflow-x:hidden;
+text-align:center;
+}
+
+h1{
+margin-top:25px;
+font-family:'Great Vibes',cursive;
+font-size:42px;
+letter-spacing:2px;
+}
+
+/* 3×3 GRID */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+width:720px;
+margin-top:40px;
+justify-items:center;
+}
+
+/* CARD */
+
+.card{
+width:200px;
+height:250px;
+perspective:1000px;
+transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* HOVER LIFT */
+
+.card:hover{
+transform:translateY(-10px) scale(1.05);
+box-shadow:0 15px 35px rgba(0,0,0,0.35);
+}
+
+.card-inner{
+position:relative;
+width:100%;
+height:100%;
+transition:transform 0.8s;
+transform-style:preserve-3d;
+cursor:pointer;
+}
+
+.card.flipped .card-inner{
+transform:rotateY(180deg);
+}
+
+.card-front,.card-back{
+position:absolute;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:15px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+padding:10px;
+text-align:center;
+}
+
+/* FRONT */
+
+.card-front{
+background:white;
+color:#ff4d6d;
+font-size:20px;
+font-weight:600;
+}
+
+/* BACK */
+
+.card-back{
+background:white;
+color:black;
+transform:rotateY(180deg);
+}
+
+.card-back img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.message{
+margin-top:8px;
+font-size:14px;
+text-align:center;
+}
+
+/* STRONG GLOW WHEN OPENED */
+
+.card.flipped{
+box-shadow:
+0 0 25px #fff,
+0 0 60px #ff4d6d,
+0 0 90px #ff4d6d;
+}
+
+/* FINAL MESSAGE */
+
+#finalMessage{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-size:34px;
+font-family:'Great Vibes',cursive;
+text-align:center;
+opacity:0;
+pointer-events:none;
+transition:1s;
+padding:20px;
+}
+
+#finalMessage.show{
+opacity:1;
+pointer-events:auto;
+}
+
+/* PARTICLES */
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+/* HEART EXPLOSION */
+
+.heart{
+position:fixed;
+font-size:22px;
+animation:explode 1.5s forwards;
+}
+
+@keyframes explode{
+0%{transform:translate(0,0) scale(1);opacity:1;}
+100%{transform:translate(var(--x),var(--y)) scale(0.5);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Open Each One Plsss ❤️</h1>
+
+<div class="gallery">
+
+<!-- 1 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I want to be like that time only😭 </div>
+<div class="card-back">
+<img src="MV1.png">
+<div class="message">The first ever pic you sent me, It's illegal to look that good, so good I have even drawn it👀</div>
+</div>
+</div>
+</div>
+
+<!-- 2 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I was really an asshole at that time</div>
+<div class="card-back">
+<img src="MV2.png">
+<div class="message">I will die with that kiss in real life🫀</div>
+</div>
+</div>
+</div>
+
+<!-- 3 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I have never felt like this for anyone before😊</div>
+<div class="card-back">
+<img src="MV3.png">
+<div class="message">Call the fire extinguisher, koi toh keher dhaa rha hai🔥</div>
+</div>
+</div>
+</div>
+
+<!-- 4 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I promise to do better🤞</div>
+<div class="card-back">
+<img src="MV4.png">
+<div class="message">This one gave me a heart attack not gonna lie 🤭</div>
+</div>
+</div>
+</div>
+
+<!-- 5 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">You are literally one of the most important person for me💐</div>
+<div class="card-back">
+<img src="MV5.png">
+<div class="message">You are looking like a cupcake here🧁</div>
+</div>
+</div>
+</div>
+
+<!-- 6 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I deeply regret those words of mine 😢</div>
+<div class="card-back">
+<img src="MV6.png">
+<div class="message">I literally wanted to eat you (Not in dirty way)🤗</div>
+</div>
+</div>
+</div>
+
+<!-- 7 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I won't hurt you ever again😤</div>
+<div class="card-back">
+<img src="MV7.png">
+<div class="message">My kucchupuchhu😝</div>
+</div>
+</div>
+</div>
+
+<!-- 8 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I am matured now due to some incidents happened in between these months</div>
+<div class="card-back">
+<img src="MV8.png">
+<div class="message">I loved these random photos and videos of yours😻</div>
+</div>
+</div>
+</div>
+
+<!-- 9 -->
+<div class="card" onclick="flip(this)">
+<div class="card-inner">
+<div class="card-front">I am begging you for one chance from you, CUTIE️</div>
+<div class="card-back">
+<img src="MV9.png">
+<div class="message">Wtf, you are literally slaying in both casuals and traditionals 😘</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="finalMessage">
+<div>I know I made terrible mistakes and hurt you but I will heal everything, I promise</div>
+<div>Losing you would hurt more than anything.</div>
+<div>Please forgive me ❤️</div>
+</div>
+
+<audio id="music">
+<source src="Rakhlo Tum Chupaake.mp3" type="audio/mpeg">
+</audio>
+
+<canvas id="particles"></canvas>
+
+<script>
+
+let opened=0;
+const total=9;
+
+const music=document.getElementById("music");
+
+music.currentTime=53;
+
+music.addEventListener("timeupdate",()=>{
+if(music.currentTime>=106){
+music.currentTime=53;
+music.play();
+}
+});
+
+window.addEventListener("click",()=>{
+music.play();
+},{once:true});
+
+function flip(card){
+
+if(!card.classList.contains("flipped")){
+card.classList.add("flipped");
+opened++;
+
+if(opened===total){
+setTimeout(()=>{
+document.getElementById("finalMessage").classList.add("show");
+heartExplosion();
+},1200);
+}
+
+}
+
+}
+
+/* PARTICLES */
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*4+1,
+speed:Math.random()*1+0.2
+});
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="rgba(255,255,255,0.8)";
+
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+ctx.fill();
+
+p.y+=p.speed;
+
+if(p.y>canvas.height){
+p.y=0;
+p.x=Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
+
+/* HEART EXPLOSION */
+
+function heartExplosion(){
+
+for(let i=0;i<60;i++){
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+
+heart.style.left=window.innerWidth/2+"px";
+heart.style.top=window.innerHeight/2+"px";
+
+heart.style.setProperty("--x",(Math.random()*800-400)+"px");
+heart.style.setProperty("--y",(Math.random()*600-300)+"px");
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),1500);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
+
