@@ -1,6 +1,8 @@
 <html>
 <head>
 <title>Apology Statement from Krishiv Bansal to Madhavi Verma</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 <style>
 	
@@ -16,20 +18,23 @@ overflow:hidden;
 }
 
 /* white box */
+	
 .box{
 position:absolute;
 bottom:-300px;
 left:50%;
 transform:translateX(-50%);
-width:320px;
-padding:25px;
-background:white;
-border-radius:15px;
+width:500px;
+padding:40px;
+background:rgba(255,255,255,0.9);
+border-radius:20px;
 text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 animation:slideUp 2s forwards;
 }
 
 /* text fade */
+	
 .text{
 opacity:0;
 animation:fadeText 2s forwards;
@@ -37,42 +42,68 @@ animation-delay:2s;
 }
 
 /* button */
+	
 button{
-margin-top:15px;
-padding:10px 20px;
+margin-top:20px;
+padding:12px 25px;
 border:none;
-border-radius:8px;
+border-radius:10px;
 background:#ff6b81;
 color:white;
 font-size:16px;
 cursor:pointer;
+transition:0.3s;
 }
 
+button:hover{
+background:#ff4757;
+transform:scale(1.05);
+}
+	
 /* animations */
+	
 @keyframes slideUp{
-from{bottom:-300px;}
-to{bottom:35%;}
+from{
+bottom:-300px;
 }
-
+to{
+bottom:35%;
+}
+}
+	
 @keyframes fadeText{
-from{opacity:0;}
-to{opacity:1;}
-} 
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
 
 
 </style>
+	
 </head>
 	
 <body>
 
 <div class="box">
+	
 <div class="text">
+	
 <h2>Hey...</h2>
-<p>Please wait a second.</p>
-<button onclick="location.href='page2.html'">Click here</button>
+	
+<p>Before you close this page, please give me a moment.</p>
+	
+<button onclick="location.href='page2.html'">
+Click here
+</button>
+	
 </div>
+	
 </div>
 
 </body>
 </html> 
+
 
