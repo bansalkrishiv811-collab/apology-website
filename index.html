@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title> Last chance??</title>
+<title>Last chance??</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
@@ -23,6 +23,8 @@ background-image:url("Sorry.jpg");
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
+
+cursor:none;
 }
 
 h1{
@@ -93,6 +95,8 @@ from{transform:translateY(-20px) rotate(0deg);}
 to{transform:translateY(100vh) rotate(720deg);}
 }
 
+/* final screen */
+
 #finalScreen{
 position:absolute;
 top:0;
@@ -104,6 +108,7 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 background:rgba(0,0,0,0.6);
+backdrop-filter:blur(8px);
 opacity:0;
 pointer-events:none;
 transition:1s;
@@ -113,10 +118,30 @@ transition:1s;
 font-size:45px;
 }
 
+/* sparkle cursor */
+
+.sparkle{
+position:absolute;
+pointer-events:none;
+font-size:16px;
+animation:spark 0.8s linear forwards;
+}
+
+@keyframes spark{
+from{opacity:1;transform:scale(1);}
+to{opacity:0;transform:scale(2);}
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- Background Music -->
+
+<audio id="bgMusic">
+<source src="Iss Tarah.mp3" type="audio/mpeg">
+</audio>
 
 <h1>Can I get one last chance, maalkin</h1>
 
@@ -124,7 +149,7 @@ font-size:45px;
 <button id="hmmBtn">HMM...</button>
 
 <div id="finalScreen">
-<h2>I won't disappoint you ❤️</h2>
+<h2 id="finalText"></h2>
 </div>
 
 <script>
@@ -132,11 +157,37 @@ font-size:45px;
 let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
 let finalScreen=document.getElementById("finalScreen");
+let finalText=document.getElementById("finalText");
+
+let music=document.getElementById("bgMusic");
 
 let hellSize=1;
 let hmmSize=1;
 
-/* Move button safely */
+/* autoplay music */
+
+window.addEventListener("load",()=>{
+
+music.currentTime=170;   // 2:50
+music.volume=0.7;
+
+music.play().catch(()=>{
+document.addEventListener("click",()=>music.play(),{once:true});
+});
+
+});
+
+/* loop specific part */
+
+music.addEventListener("timeupdate",()=>{
+
+if(music.currentTime>=203){   // 3:23
+music.currentTime=170;
+}
+
+});
+
+/* move button */
 
 function moveHellButton(){
 
@@ -156,7 +207,7 @@ hellBtn.style.top=y+"px";
 
 }
 
-/* SMART DODGE SYSTEM */
+/* dodge system */
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -169,8 +220,6 @@ const distX=e.clientX-buttonX;
 const distY=e.clientY-buttonY;
 
 const distance=Math.sqrt(distX*distX+distY*distY);
-
-/* if cursor comes close */
 
 if(distance<150){
 
@@ -199,8 +248,31 @@ finalScreen.style.pointerEvents="all";
 
 heartExplosion();
 confettiExplosion();
+typeText("I won't disappoint you ❤️");
 
 };
+
+/* typing effect */
+
+function typeText(text){
+
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+
+finalText.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,60);
+
+}
+
+}
+
+typing();
+
+}
 
 /* floating hearts */
 
@@ -270,6 +342,24 @@ setTimeout(()=>confetti.remove(),5000);
 }
 
 }
+
+/* sparkle cursor */
+
+document.addEventListener("mousemove",(e)=>{
+
+let spark=document.createElement("div");
+
+spark.classList.add("sparkle");
+spark.innerHTML="✨";
+
+spark.style.left=e.pageX+"px";
+spark.style.top=e.pageY+"px";
+
+document.body.appendChild(spark);
+
+setTimeout(()=>spark.remove(),800);
+
+});
 
 </script>
 
