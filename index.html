@@ -1,16 +1,78 @@
 <html>
 <head>
 <title>Apology Statement from Krishiv Bansal to Madhavi Verma</title>
+	
 <style>
+	
 body{
-    background-image: url("Sorry.jpg");
-	background-size: cover; 
-	background-repeat: no-repeat;
-	background-position: center;
+margin:0;
+height:100vh;
+background-image: url("Sorry.jpg");
+background-size: cover; 
+background-repeat: no-repeat;
+background-position: center;
+font-family:Arial, sans-serif;
+overflow:hidden;
 }
+
+/* white box */
+.box{
+position:absolute;
+bottom:-300px;
+left:50%;
+transform:translateX(-50%);
+width:320px;
+padding:25px;
+background:white;
+border-radius:15px;
+text-align:center;
+animation:slideUp 2s forwards;
+}
+
+/* text fade */
+.text{
+opacity:0;
+animation:fadeText 2s forwards;
+animation-delay:2s;
+}
+
+/* button */
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+background:#ff6b81;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+/* animations */
+@keyframes slideUp{
+from{bottom:-300px;}
+to{bottom:35%;}
+}
+
+@keyframes fadeText{
+from{opacity:0;}
+to{opacity:1;}
+} 
+
+
 </style>
 </head>
+	
 <body>
-</body>
 
+<div class="box">
+<div class="text">
+<h2>Hey...</h2>
+<p>Please wait a second.</p>
+<button onclick="location.href='page2.html'">Click here</button>
+</div>
+</div>
+
+</body>
 </html> 
+
