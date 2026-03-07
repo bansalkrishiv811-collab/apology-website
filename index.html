@@ -25,8 +25,6 @@ background-position:center;
 cursor:none;
 }
 
-/* overlay */
-
 body::before{
 content:"";
 position:absolute;
@@ -38,14 +36,10 @@ background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.65));
 z-index:-1;
 }
 
-/* container */
-
 .container{
 text-align:center;
 max-width:700px;
 }
-
-/* floating gif */
 
 #topGif{
 width:260px;
@@ -60,23 +54,17 @@ animation:float 3s ease-in-out infinite;
 100%{transform:translateY(0px);}
 }
 
-/* title */
-
 h1{
 font-size:36px;
 margin-bottom:10px;
 text-shadow:0 0 12px black;
 }
 
-/* subtitle */
-
 .subtitle{
 font-size:18px;
 margin-bottom:40px;
 opacity:0.9;
 }
-
-/* buttons */
 
 .buttons{
 display:flex;
@@ -96,8 +84,6 @@ cursor:pointer;
 transition:0.2s;
 }
 
-/* colors */
-
 #hellBtn{
 background:#ff3b3b;
 color:white;
@@ -109,8 +95,6 @@ background:#ff7ad9;
 color:white;
 }
 
-/* hearts floating */
-
 .heart{
 position:absolute;
 bottom:-50px;
@@ -121,8 +105,6 @@ animation:floatUp linear forwards;
 from{transform:translateY(0);opacity:1;}
 to{transform:translateY(-120vh);opacity:0;}
 }
-
-/* final screen */
 
 #finalScreen{
 position:absolute;
@@ -149,8 +131,6 @@ margin-bottom:20px;
 #countdown{
 font-size:60px;
 }
-
-/* sparkle cursor */
 
 .sparkle{
 position:absolute;
@@ -198,8 +178,6 @@ I know I messed up badly… but I'm still hoping you'll hear me out.
 
 <script>
 
-/* typing title */
-
 function typeTitle(){
 
 let text="Can I get one last chance, maalkin";
@@ -218,8 +196,6 @@ typing();
 
 typeTitle();
 
-/* elements */
-
 let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
 let finalScreen=document.getElementById("finalScreen");
@@ -230,23 +206,17 @@ let music=document.getElementById("bgMusic");
 let accepted=false;
 let hmmScale=1;
 
-/* start music */
-
 document.addEventListener("click",()=>{
 music.currentTime=170;
 music.volume=0.7;
 music.play();
 },{once:true});
 
-/* redirect when song reaches 3:23 */
-
 music.addEventListener("timeupdate",()=>{
 if(accepted && music.currentTime>=203){
 window.location.href="page2.html";
 }
 });
-
-/* move red button */
 
 function moveHellButton(){
 
@@ -257,8 +227,6 @@ hellBtn.style.left=x+"px";
 hellBtn.style.top=y+"px";
 
 }
-
-/* dodge logic */
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -273,21 +241,17 @@ if(distance<140){
 
 moveHellButton();
 
-/* grow HMM button */
-
 hmmScale+=0.05;
 
 hmmBtn.style.transform=`scale(${hmmScale})`;
 
 if(hmmScale>1.6){
-hmmBtn.innerText="Okay I forgive you ❤️";
+hmmBtn.innerText="I will listen ❤️";
 }
 
 }
 
 });
-
-/* HMM click */
 
 hmmBtn.onclick=()=>{
 
@@ -304,8 +268,6 @@ startCountdown();
 
 };
 
-/* typing text */
-
 function typeText(text){
 
 let i=0;
@@ -320,8 +282,6 @@ setTimeout(typing,60);
 
 typing();
 }
-
-/* countdown */
 
 function startCountdown(){
 
@@ -345,8 +305,6 @@ clearInterval(interval);
 
 }
 
-/* floating hearts */
-
 function createHeart(){
 
 const heart=document.createElement("div");
@@ -365,8 +323,6 @@ setTimeout(()=>heart.remove(),6000);
 }
 
 setInterval(createHeart,200);
-
-/* heart explosion */
 
 function heartExplosion(){
 
@@ -393,8 +349,6 @@ setTimeout(()=>heart.remove(),5000);
 
 }
 
-/* sparkle cursor */
-
 document.addEventListener("mousemove",(e)=>{
 
 let spark=document.createElement("div");
@@ -415,6 +369,7 @@ setTimeout(()=>spark.remove(),800);
 
 </body>
 </html>
+
 
 
 
