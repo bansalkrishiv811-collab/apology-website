@@ -25,12 +25,45 @@ background-position:center;
 background-repeat:no-repeat;
 
 cursor:none;
+animation:fadeIn 2s ease;
 }
 
-h1{
-margin-bottom:40px;
-text-shadow:0 0 10px black;
+/* cinematic overlay */
+
+body::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(
+rgba(0,0,0,0.35),
+rgba(0,0,0,0.65)
+);
+z-index:-1;
 }
+
+/* title */
+
+h1{
+margin-bottom:10px;
+text-shadow:0 0 12px black;
+font-size:36px;
+}
+
+/* subtitle */
+
+.subtitle{
+max-width:600px;
+text-align:center;
+font-size:18px;
+opacity:0.9;
+margin-bottom:40px;
+text-shadow:0 0 8px black;
+}
+
+/* buttons */
 
 button{
 border:none;
@@ -48,6 +81,8 @@ height:70px;
 display:flex;
 align-items:center;
 justify-content:center;
+
+animation:pulse 2s infinite;
 }
 
 #hellBtn{
@@ -66,6 +101,27 @@ position:absolute;
 left:50%;
 top:75%;
 transform:translate(-50%,-50%);
+}
+
+/* button pulse */
+
+@keyframes pulse{
+0%{box-shadow:0 0 0 0 rgba(255,255,255,0.4);}
+70%{box-shadow:0 0 0 18px rgba(255,255,255,0);}
+100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}
+}
+
+/* page fade */
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:scale(1.05);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
 }
 
 /* floating hearts */
@@ -93,6 +149,32 @@ animation:fall linear forwards;
 @keyframes fall{
 from{transform:translateY(-20px) rotate(0deg);}
 to{transform:translateY(100vh) rotate(720deg);}
+}
+
+/* glow particles */
+
+.glow{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.7;
+animation:floatGlow linear infinite;
+}
+
+@keyframes floatGlow{
+from{
+transform:translateY(0);
+opacity:0;
+}
+50%{
+opacity:1;
+}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
 }
 
 /* final screen */
@@ -141,7 +223,11 @@ to{opacity:0;transform:scale(2);}
 <source src="Iss Tarah.mp3" type="audio/mpeg">
 </audio>
 
-<h1>Can I get one last chance, maalkin</h1>
+<h1 id="title"></h1>
+
+<p class="subtitle">
+I know I messed up badly… but I'm still hoping you'll hear me out.
+</p>
 
 <button id="hellBtn">You don't deserve</button>
 <button id="hmmBtn">HMM...</button>
@@ -152,6 +238,26 @@ to{opacity:0;transform:scale(2);}
 
 <script>
 
+/* typing title */
+
+function typeTitle(){
+
+let text="Can I get one last chance, maalkin";
+let i=0;
+
+function typing(){
+if(i<text.length){
+document.getElementById("title").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,70);
+}
+}
+
+typing();
+}
+
+typeTitle();
+
 let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
 let finalScreen=document.getElementById("finalScreen");
@@ -161,17 +267,17 @@ let music=document.getElementById("bgMusic");
 let hellSize=1;
 let hmmSize=1;
 
-/* Start music on first click */
+/* start music */
 
 document.addEventListener("click",()=>{
 
-music.currentTime=170; // 2:50
+music.currentTime=170;
 music.volume=0.7;
 music.play();
 
 },{once:true});
 
-/* Loop music from 2:50 to 3:23 */
+/* loop music */
 
 music.addEventListener("timeupdate",()=>{
 
@@ -202,7 +308,7 @@ hellBtn.style.top=y+"px";
 
 }
 
-/* dodge system */
+/* dodge */
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -245,15 +351,13 @@ heartExplosion();
 confettiExplosion();
 typeText("I won't disappoint you ❤️");
 
-/* open second page after 4 seconds */
-
 setTimeout(()=>{
 window.location.href="page2.html";
 },4000);
 
 };
 
-/* typing effect */
+/* typing final */
 
 function typeText(text){
 
@@ -295,6 +399,24 @@ setTimeout(()=>heart.remove(),6000);
 }
 
 setInterval(createHeart,150);
+
+/* glow particles */
+
+function createGlow(){
+
+const g=document.createElement("div");
+g.classList.add("glow");
+
+g.style.left=Math.random()*100+"vw";
+g.style.animationDuration=(6+Math.random()*6)+"s";
+
+document.body.appendChild(g);
+
+setTimeout(()=>g.remove(),12000);
+
+}
+
+setInterval(createGlow,300);
 
 /* heart explosion */
 
@@ -366,6 +488,8 @@ setTimeout(()=>spark.remove(),800);
 
 </body>
 </html>
+
+
 
 
 
