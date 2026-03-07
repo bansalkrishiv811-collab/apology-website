@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title> Apology Letter </title>
+<title>Apology pleaseee??</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -14,7 +17,7 @@ justify-content:center;
 align-items:center;
 flex-direction:column;
 overflow:hidden;
-font-family:Arial;
+font-family:'Poppins', sans-serif;
 color:white;
 
 /* YOUR BACKGROUND IMAGE */
@@ -42,11 +45,14 @@ button{
 border:none;
 border-radius:12px;
 padding:20px 40px;
-font-size:22px;
+font-size:20px;
 cursor:pointer;
 transition:0.25s;
-width:200px; /* SAME SIZE */
+width:200px;
 height:70px;
+font-family:'Poppins', sans-serif;
+font-weight:600;
+letter-spacing:1px;
 }
 
 #hellBtn{
@@ -125,7 +131,7 @@ text-align:center;
 
 <body>
 
-<h1>Choose one </h1>
+<h1>Choose one 😏</h1>
 
 <div class="buttons">
 <button id="hellBtn">GO TO HELL</button>
@@ -145,12 +151,18 @@ let finalScreen = document.getElementById("finalScreen");
 let hellSize = 1;
 let hmmSize = 1;
 
-/* Move button */
+/* Keep button inside screen */
 
 function moveHellButton(){
 
-let x = Math.random() * (window.innerWidth - 220);
-let y = Math.random() * (window.innerHeight - 100);
+const buttonWidth = hellBtn.offsetWidth;
+const buttonHeight = hellBtn.offsetHeight;
+
+const maxX = window.innerWidth - buttonWidth;
+const maxY = window.innerHeight - buttonHeight;
+
+let x = Math.random() * maxX;
+let y = Math.random() * maxY;
 
 hellBtn.style.left = x + "px";
 hellBtn.style.top = y + "px";
