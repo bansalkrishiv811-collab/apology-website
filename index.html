@@ -137,8 +137,6 @@ to{opacity:0;transform:scale(2);}
 
 <body>
 
-<!-- Background Music -->
-
 <audio id="bgMusic">
 <source src="Iss Tarah.mp3" type="audio/mpeg">
 </audio>
@@ -158,31 +156,28 @@ let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
 let finalScreen=document.getElementById("finalScreen");
 let finalText=document.getElementById("finalText");
-
 let music=document.getElementById("bgMusic");
 
 let hellSize=1;
 let hmmSize=1;
 
-/* autoplay music */
+/* start music on first mouse move */
 
-window.addEventListener("load",()=>{
+document.addEventListener("mousemove",()=>{
 
 music.currentTime=170;   // 2:50
 music.volume=0.7;
+music.play();
 
-music.play().catch(()=>{
-document.addEventListener("click",()=>music.play(),{once:true});
-});
+},{once:true});
 
-});
-
-/* loop specific part */
+/* loop from 2:50 to 3:23 */
 
 music.addEventListener("timeupdate",()=>{
 
-if(music.currentTime>=203){   // 3:23
+if(music.currentTime>=203){
 music.currentTime=170;
+music.play();
 }
 
 });
