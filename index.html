@@ -2,6 +2,7 @@
 <html>
 
 <head>
+
 <title>Apology Statement from Krishiv Bansal to Madhavi Verma</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,34 +14,12 @@ margin:0;
 height:100vh;
 background-image:url("Sorry.jpg");
 background-size:cover;
-background-repeat:no-repeat;
 background-position:center;
 font-family:Arial, sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
-}
-
-/* floating hearts */
-
-.heart{
-position:absolute;
-bottom:-50px;
-font-size:20px;
-animation:float 6s linear infinite;
-color:#ff6b81;
-}
-
-@keyframes float{
-0%{
-transform:translateY(0) scale(1);
-opacity:1;
-}
-100%{
-transform:translateY(-100vh) scale(1.5);
-opacity:0;
-}
 }
 
 /* white box */
@@ -62,8 +41,8 @@ animation:fadeIn 2s;
 overflow:hidden;
 border-right:3px solid #ff6b81;
 white-space:nowrap;
-animation:typing 3s steps(30,end), blink .8s infinite;
 margin:auto;
+animation:typing 3s steps(30,end), blink .8s infinite;
 }
 
 @keyframes typing{
@@ -77,9 +56,40 @@ to{width:100%}
 100%{border-color:transparent}
 }
 
+/* floating hearts */
+
+.heart{
+position:fixed;
+bottom:-40px;
+pointer-events:none;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+
+0%{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+
+100%{
+transform:translateY(-110vh) scale(1.6);
+opacity:0;
+}
+
+}
+
+/* fade animation */
+
 @keyframes fadeIn{
-from{opacity:0; transform:translateY(50px);}
-to{opacity:1; transform:translateY(0);}
+from{
+opacity:0;
+transform:translateY(50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* button */
@@ -121,38 +131,90 @@ padding:10px 20px;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- hearts -->
-<div class="heart" style="left:10%">❤️</div>
-<div class="heart" style="left:30%; animation-delay:1s;">❤️</div>
-<div class="heart" style="left:50%; animation-delay:2s;">❤️</div>
-<div class="heart" style="left:70%; animation-delay:3s;">❤️</div>
-<div class="heart" style="left:90%; animation-delay:4s;">❤️</div>
-
 <div class="box">
 
-<h2 class="typewriter">Hey Munmun, I hope you remember me</h2>
+<h2 class="typewriter">Hey...</h2>
 
-<p>
-Before you close this page, just hear me out
-</p>
+<p>Before you close this page, please give me a moment.</p>
 
-<button onclick="location.href='page2.html'">
-Click here
-</button>
+<button onclick="startLove()">Click here</button>
 
 </div>
 
-<!-- optional background music -->
-<!-- add your music file if you want -->
-<!--
-<audio autoplay loop>
+
+<!-- MUSIC -->
+
+<audio id="bgmusic" loop>
 <source src="music.mp3" type="audio/mpeg">
 </audio>
--->
+
+
+<script>
+
+/* floating hearts generator */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(25+Math.random()*40)+"px";
+
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+/* increase frequency */
+
+setInterval(createHeart,250);
+
+
+/* heart explosion */
+
+function heartBurst(){
+
+for(let i=0;i<25;i++){
+
+setTimeout(createHeart,i*40);
+
+}
+
+}
+
+
+/* button click */
+
+function startLove(){
+
+document.getElementById("bgmusic").play();
+
+heartBurst();
+
+setTimeout(()=>{
+
+location.href="page2.html";
+
+},1200);
+
+}
+
+</script>
 
 </body>
 </html>
