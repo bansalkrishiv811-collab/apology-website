@@ -34,28 +34,8 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.65));
+background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.65));
 z-index:-1;
-}
-
-/* intro screen */
-
-#intro{
-position:absolute;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:36px;
-background:black;
-animation:introFade 3s forwards;
-}
-
-@keyframes introFade{
-0%{opacity:1;}
-80%{opacity:1;}
-100%{opacity:0;visibility:hidden;}
 }
 
 /* container */
@@ -85,7 +65,7 @@ animation:float 3s ease-in-out infinite;
 h1{
 font-size:36px;
 margin-bottom:10px;
-text-shadow:0 0 10px black;
+text-shadow:0 0 12px black;
 }
 
 /* subtitle */
@@ -129,21 +109,7 @@ background:#ff7ad9;
 color:white;
 }
 
-/* page shake */
-
-.shake{
-animation:shake 0.3s;
-}
-
-@keyframes shake{
-0%{transform:translate(2px,2px);}
-25%{transform:translate(-2px,2px);}
-50%{transform:translate(2px,-2px);}
-75%{transform:translate(-2px,-2px);}
-100%{transform:translate(0,0);}
-}
-
-/* hearts */
+/* hearts floating */
 
 .heart{
 position:absolute;
@@ -176,13 +142,15 @@ transition:1s;
 }
 
 #finalText{
-font-size:40px;
+font-size:42px;
 margin-bottom:20px;
 }
 
 #countdown{
 font-size:60px;
 }
+
+/* sparkle cursor */
 
 .sparkle{
 position:absolute;
@@ -199,8 +167,6 @@ to{opacity:0;transform:scale(2);}
 </head>
 
 <body>
-
-<div id="intro">I know I hurt you…</div>
 
 <div class="container">
 
@@ -250,7 +216,9 @@ setTimeout(typing,70);
 typing();
 }
 
-setTimeout(typeTitle,2500);
+typeTitle();
+
+/* elements */
 
 let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
@@ -260,6 +228,7 @@ let countdown=document.getElementById("countdown");
 let music=document.getElementById("bgMusic");
 
 let accepted=false;
+let hmmScale=1;
 
 /* start music */
 
@@ -277,7 +246,7 @@ window.location.href="page2.html";
 }
 });
 
-/* dodge button */
+/* move red button */
 
 function moveHellButton(){
 
@@ -302,10 +271,17 @@ const distance=Math.sqrt(dx*dx+dy*dy);
 
 if(distance<140){
 
-document.body.classList.add("shake");
-setTimeout(()=>document.body.classList.remove("shake"),200);
-
 moveHellButton();
+
+/* grow HMM button */
+
+hmmScale+=0.05;
+
+hmmBtn.style.transform=`scale(${hmmScale})`;
+
+if(hmmScale>1.6){
+hmmBtn.innerText="Okay I forgive you ❤️";
+}
 
 }
 
@@ -328,7 +304,7 @@ startCountdown();
 
 };
 
-/* typing */
+/* typing text */
 
 function typeText(text){
 
@@ -390,7 +366,7 @@ setTimeout(()=>heart.remove(),6000);
 
 setInterval(createHeart,200);
 
-/* heart burst */
+/* heart explosion */
 
 function heartExplosion(){
 
