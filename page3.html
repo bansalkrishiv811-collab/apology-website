@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moments With You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+color:white;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow-x:hidden;
+}
+
+/* LOADING SCREEN */
+
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#ff758c;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+#bar{
+width:0%;
+height:6px;
+background:white;
+margin-top:20px;
+transition:width 0.3s;
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+padding:60px 20px;
+font-size:36px;
+}
+
+/* VIDEO SECTIONS */
+
+.section{
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:80px 20px;
+opacity:0;
+transform:translateY(40px);
+transition:all 1s ease;
+}
+
+.section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+video{
+width:320px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+.caption{
+margin-top:15px;
+font-size:18px;
+max-width:500px;
+text-align:center;
+}
+
+/* FLOATING HEARTS */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:0.7;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh)}
+}
+
+/* SURPRISE BUTTON */
+
+#surprise{
+margin:80px auto;
+display:block;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff5e8a;
+font-size:16px;
+cursor:pointer;
+}
+
+#messageBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+text-align:center;
+max-width:320px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADER -->
+
+<div id="loader">
+<div>Loading all the moments…</div>
+<div id="bar"></div>
+</div>
+
+<div class="title">Moments That Made Me Smile</div>
+
+<!-- VIDEOS -->
+
+<div class="section">
+<video src="VID1.mp4" controls></video>
+<div class="caption">This one always makes me smile.</div>
+</div>
+
+<div class="section">
+<video src="VID2.mp4" controls></video>
+<div class="caption">I replayed this more times than I should admit.</div>
+</div>
+
+<div class="section">
+<video src="VID3.mp4" controls></video>
+<div class="caption">This moment stayed in my mind.</div>
+</div>
+
+<div class="section">
+<video src="VID4.mp4" controls></video>
+<div class="caption">One of my favorite videos of you.</div>
+</div>
+
+<div class="section">
+<video src="VID5.mp4" controls></video>
+<div class="caption">This always makes my day better.</div>
+</div>
+
+<div class="section">
+<video src="VID6.mp4" controls></video>
+<div class="caption">Still one of the best memories.</div>
+</div>
+
+<div class="section">
+<video src="VID7.mp4" controls></video>
+<div class="caption">I couldn't forget this moment.</div>
+</div>
+
+<div class="section">
+<video src="VID8.mp4" controls></video>
+<div class="caption">This video always cheers me up.</div>
+</div>
+
+<div class="section">
+<video src="VID9.mp4" controls></video>
+<div class="caption">One of the videos I kept replaying.</div>
+</div>
+
+<div class="section">
+<video src="VID10.mp4" controls></video>
+<div class="caption">I remember this one clearly.</div>
+</div>
+
+<div class="section">
+<video src="VID11.mp4" controls></video>
+<div class="caption">This moment felt special.</div>
+</div>
+
+<div class="section">
+<video src="VID12.mp4" controls></video>
+<div class="caption">Still makes me smile.</div>
+</div>
+
+<div class="section">
+<video src="VID13.mp4" controls></video>
+<div class="caption">A moment I really liked.</div>
+</div>
+
+<div class="section">
+<video src="VID14.mp4" controls></video>
+<div class="caption">This one always cheers me up.</div>
+</div>
+
+<div class="section">
+<video src="VID15.mp4" controls></video>
+<div class="caption">I couldn't forget this.</div>
+</div>
+
+<div class="section">
+<video src="VID16.mp4" controls></video>
+<div class="caption">Saved the best for last.</div>
+</div>
+
+<!-- SURPRISE -->
+
+<button id="surprise">Click for a surprise</button>
+
+<div id="messageBox">
+Thank you for taking the time to see this.<br><br>
+Even if you're still upset, I hope one day we can talk again.
+</div>
+
+<script>
+
+/* LOADING BAR */
+
+let bar=document.getElementById("bar")
+let loader=document.getElementById("loader")
+
+let load=0
+let interval=setInterval(()=>{
+load+=10
+bar.style.width=load+"%"
+if(load>=100){
+clearInterval(interval)
+loader.style.display="none"
+}
+},200)
+
+/* SCROLL ANIMATION */
+
+let sections=document.querySelectorAll(".section")
+
+window.addEventListener("scroll",()=>{
+sections.forEach(section=>{
+let top=section.getBoundingClientRect().top
+if(top<window.innerHeight-100){
+section.classList.add("show")
+}
+})
+})
+
+/* FLOATING HEARTS */
+
+function createHeart(){
+let heart=document.createElement("div")
+heart.classList.add("heart")
+heart.innerHTML="❤"
+heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(10+Math.random()*20)+"px"
+heart.style.animationDuration=(5+Math.random()*5)+"s"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),8000)
+}
+
+setInterval(createHeart,700)
+
+/* CURSOR HEART TRAIL */
+
+document.addEventListener("mousemove",function(e){
+
+let heart=document.createElement("div")
+heart.innerHTML="❤"
+heart.style.position="fixed"
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+heart.style.color="white"
+heart.style.pointerEvents="none"
+heart.style.fontSize="16px"
+heart.style.opacity="0.8"
+heart.style.transition="all 1s ease"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.style.top=(e.clientY-40)+"px"
+heart.style.opacity="0"
+},10)
+
+setTimeout(()=>heart.remove(),1000)
+
+})
+
+/* CLICK HEART BURST */
+
+document.addEventListener("click",function(e){
+
+for(let i=0;i<8;i++){
+
+let heart=document.createElement("div")
+
+heart.innerHTML="❤"
+heart.style.position="fixed"
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+heart.style.fontSize="18px"
+heart.style.pointerEvents="none"
+heart.style.color="white"
+
+document.body.appendChild(heart)
+
+let x=(Math.random()-0.5)*200
+let y=(Math.random()-0.5)*200
+
+heart.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{duration:800})
+
+setTimeout(()=>heart.remove(),800)
+
+}
+
+})
+
+/* SURPRISE MESSAGE */
+
+document.getElementById("surprise").onclick=function(){
+document.getElementById("messageBox").style.display="block"
+}
+
+</script>
+
+</body>
+</html>
