@@ -295,23 +295,23 @@ animation:explode 1.5s forwards;
 
 <script>
 
-let opened=0;
-const total=9;
+let opened = 0;
+const total = 9;
 
-const music=document.getElementById("music");
+const music = document.getElementById("music");
 
-music.currentTime=53;
+music.currentTime = 53;
 
-music.addEventListener("timeupdate",()=>{
-if(music.currentTime>=106){
-music.currentTime=53;
+music.addEventListener("timeupdate", () => {
+if (music.currentTime >= 106) {
+music.currentTime = 53;
 music.play();
 }
 });
 
-window.addEventListener("click",()=>{
+window.addEventListener("click", () => {
 music.play();
-},{once:true});
+}, { once: true });
 
 function flip(card){
 
@@ -319,11 +319,21 @@ if(!card.classList.contains("flipped")){
 card.classList.add("flipped");
 opened++;
 
-if(opened===total){
+if(opened === total){
+
 setTimeout(()=>{
+
 document.getElementById("finalMessage").classList.add("show");
 heartExplosion();
+
+/* TRANSITION TO THIRD PAGE */
+
+setTimeout(()=>{
+window.location.href = "page3.html";
+}, 5000);
+
 },1200);
+
 }
 
 }
@@ -332,13 +342,13 @@ heartExplosion();
 
 /* PARTICLES */
 
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
 
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-let particles=[];
+let particles = [];
 
 for(let i=0;i<80;i++){
 particles.push({
@@ -356,15 +366,16 @@ ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.fillStyle="rgba(255,255,255,0.8)";
 
 particles.forEach(p=>{
+
 ctx.beginPath();
 ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
 ctx.fill();
 
-p.y+=p.speed;
+p.y += p.speed;
 
-if(p.y>canvas.height){
-p.y=0;
-p.x=Math.random()*canvas.width;
+if(p.y > canvas.height){
+p.y = 0;
+p.x = Math.random()*canvas.width;
 }
 
 });
@@ -399,7 +410,8 @@ setTimeout(()=>heart.remove(),1500);
 }
 
 </script>
-
+  
 </body>
 </html>
+
 
