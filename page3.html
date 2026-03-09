@@ -16,7 +16,7 @@ background:linear-gradient(135deg,#ff758c,#ff7eb3);
 overflow-x:hidden;
 }
 
-/* LOADING SCREEN */
+/* LOADER */
 
 #loader{
 position:fixed;
@@ -65,8 +65,13 @@ opacity:1;
 transform:translateY(0);
 }
 
+/* LANDSCAPE VIDEO STYLE */
+
 video{
-width:320px;
+width:700px;
+max-width:90%;
+aspect-ratio:16/9;
+object-fit:cover;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
@@ -74,7 +79,7 @@ box-shadow:0 10px 30px rgba(0,0,0,0.4);
 .caption{
 margin-top:15px;
 font-size:18px;
-max-width:500px;
+max-width:600px;
 text-align:center;
 }
 
@@ -127,8 +132,6 @@ box-shadow:0 10px 40px rgba(0,0,0,0.4);
 
 <body>
 
-<!-- LOADER -->
-
 <div id="loader">
 <div>Loading all the moments…</div>
 <div id="bar"></div>
@@ -139,86 +142,84 @@ box-shadow:0 10px 40px rgba(0,0,0,0.4);
 <!-- VIDEOS -->
 
 <div class="section">
-<video src="VID1.mp4" controls></video>
+<video src="VID1.mp4" autoplay muted loop playsinline></video>
 <div class="caption">This one always makes me smile.</div>
 </div>
 
 <div class="section">
-<video src="VID2.mp4" controls></video>
+<video src="VID2.mp4" autoplay muted loop playsinline></video>
 <div class="caption">I replayed this more times than I should admit.</div>
 </div>
 
 <div class="section">
-<video src="VID3.mp4" controls></video>
+<video src="VID3.mp4" autoplay muted loop playsinline></video>
 <div class="caption">This moment stayed in my mind.</div>
 </div>
 
 <div class="section">
-<video src="VID4.mp4" controls></video>
+<video src="VID4.mp4" autoplay muted loop playsinline></video>
 <div class="caption">One of my favorite videos of you.</div>
 </div>
 
 <div class="section">
-<video src="VID5.mp4" controls></video>
+<video src="VID5.mp4" autoplay muted loop playsinline></video>
 <div class="caption">This always makes my day better.</div>
 </div>
 
 <div class="section">
-<video src="VID6.mp4" controls></video>
+<video src="VID6.mp4" autoplay muted loop playsinline></video>
 <div class="caption">Still one of the best memories.</div>
 </div>
 
 <div class="section">
-<video src="VID7.mp4" controls></video>
+<video src="VID7.mp4" autoplay muted loop playsinline></video>
 <div class="caption">I couldn't forget this moment.</div>
 </div>
 
 <div class="section">
-<video src="VID8.mp4" controls></video>
+<video src="VID8.mp4" autoplay muted loop playsinline></video>
 <div class="caption">This video always cheers me up.</div>
 </div>
 
 <div class="section">
-<video src="VID9.mp4" controls></video>
+<video src="VID9.mp4" autoplay muted loop playsinline></video>
 <div class="caption">One of the videos I kept replaying.</div>
 </div>
 
 <div class="section">
-<video src="VID10.mp4" controls></video>
+<video src="VID10.mp4" autoplay muted loop playsinline></video>
 <div class="caption">I remember this one clearly.</div>
 </div>
 
 <div class="section">
-<video src="VID11.mp4" controls></video>
+<video src="VID11.mp4" autoplay muted loop playsinline></video>
 <div class="caption">This moment felt special.</div>
 </div>
 
 <div class="section">
-<video src="VID12.mp4" controls></video>
+<video src="VID12.mp4" autoplay muted loop playsinline></video>
 <div class="caption">Still makes me smile.</div>
 </div>
 
 <div class="section">
-<video src="VID13.mp4" controls></video>
+<video src="VID13.mp4" autoplay muted loop playsinline></video>
 <div class="caption">A moment I really liked.</div>
 </div>
 
 <div class="section">
-<video src="VID14.mp4" controls></video>
+<video src="VID14.mp4" autoplay muted loop playsinline></video>
 <div class="caption">This one always cheers me up.</div>
 </div>
 
 <div class="section">
-<video src="VID15.mp4" controls></video>
+<video src="VID15.mp4" autoplay muted loop playsinline></video>
 <div class="caption">I couldn't forget this.</div>
 </div>
 
 <div class="section">
-<video src="VID16.mp4" controls></video>
+<video src="VID16.mp4" autoplay muted loop playsinline></video>
 <div class="caption">Saved the best for last.</div>
 </div>
-
-<!-- SURPRISE -->
 
 <button id="surprise">Click for a surprise</button>
 
@@ -244,15 +245,21 @@ loader.style.display="none"
 }
 },200)
 
-/* SCROLL ANIMATION */
+/* SCROLL ANIMATION + AUTO PLAY */
 
 let sections=document.querySelectorAll(".section")
 
 window.addEventListener("scroll",()=>{
 sections.forEach(section=>{
 let top=section.getBoundingClientRect().top
+
 if(top<window.innerHeight-100){
+
 section.classList.add("show")
+
+let vid=section.querySelector("video")
+vid.play()
+
 }
 })
 })
@@ -329,8 +336,6 @@ setTimeout(()=>heart.remove(),800)
 }
 
 })
-
-/* SURPRISE MESSAGE */
 
 document.getElementById("surprise").onclick=function(){
 document.getElementById("messageBox").style.display="block"
