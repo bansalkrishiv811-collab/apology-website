@@ -28,12 +28,34 @@ text-align:center;
 overflow:hidden;
 }
 
+#lockPhoto{
+position:absolute;
+width:240px;
+border-radius:20px;
+filter:blur(4px);
+opacity:0.35;
+animation:floatPhoto 6s ease-in-out infinite;
+}
+
+@keyframes floatPhoto{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
 #lockBox{
 background:rgba(0,0,0,0.45);
 padding:40px;
 border-radius:20px;
 backdrop-filter:blur(8px);
 box-shadow:0 0 40px rgba(0,0,0,0.4);
+animation:glow 2s ease-in-out infinite;
+}
+
+@keyframes glow{
+0%{box-shadow:0 0 20px rgba(255,255,255,0.2);}
+50%{box-shadow:0 0 40px rgba(255,100,150,0.8);}
+100%{box-shadow:0 0 20px rgba(255,255,255,0.2);}
 }
 
 #lockBox input{
@@ -60,6 +82,12 @@ cursor:pointer;
 #lockError{
 margin-top:10px;
 color:#ffdede;
+font-size:14px;
+}
+
+#hint{
+font-size:13px;
+opacity:0.85;
 }
 
 .shake{
@@ -94,7 +122,7 @@ from{transform:translateY(0);opacity:1}
 to{transform:translateY(-120vh);opacity:0}
 }
 
-/* ORIGINAL SITE STYLE */
+/* MAIN PAGE */
 
 body{
 margin:0;
@@ -105,11 +133,9 @@ align-items:center;
 font-family:'Poppins',sans-serif;
 color:white;
 overflow:hidden;
-
 background-image:url("Sorry.jpg");
 background-size:cover;
 background-position:center;
-
 cursor:none;
 }
 
@@ -240,9 +266,21 @@ to{opacity:0;transform:scale(2);}
 
 <div id="lockScreen">
 
+<img id="lockPhoto" src="MV1.png">
+
 <div id="lockBox">
-<h2>These pages are only for you ❤️</h2>
-<p>What animal did u compare me to??</p>
+
+<h2>This page is only for you ❤️</h2>
+
+<p>Only you know the answer to this</p>
+
+<p style="font-size:14px;opacity:0.8">
+What nickname did I give you first?
+</p>
+
+<p style="font-size:13px;opacity:0.7">
+🔒 This page is protected because it means a lot to me.
+</p>
 
 <input type="password" id="lockPass" placeholder="Password">
 
@@ -250,12 +288,26 @@ to{opacity:0;transform:scale(2);}
 
 <button onclick="unlockSite()">Open</button>
 
+<br>
+
+<button onclick="showHint()" style="background:#ff8ab5;color:white">
+Need a hint?
+</button>
+
+<p id="hint"></p>
+
 <div id="lockError"></div>
-</div>
 
 </div>
 
-<!-- ORIGINAL PAGE -->
+</div>
+
+<!-- unlock sound -->
+<audio id="unlockSound">
+<source src="unlock.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN PAGE -->
 
 <div class="container">
 
@@ -287,13 +339,17 @@ I know I messed up badly… but I'm still hoping you'll hear me out.
 
 <script>
 
+let wrongAttempts=0;
+
 /* PASSWORD SYSTEM */
 
 function unlockSite(){
 
 let pass=document.getElementById("lockPass").value;
 
-if(pass==="Hamster"){
+if(pass==="cutie123"){
+
+document.getElementById("unlockSound").play();
 
 let screen=document.getElementById("lockScreen");
 
@@ -301,13 +357,25 @@ screen.classList.add("unlock");
 
 setTimeout(()=>{
 screen.style.display="none";
-},900);
+},1000);
 
 }
 
 else{
 
-document.getElementById("lockError").innerText="Wrong password";
+wrongAttempts++;
+
+let error=document.getElementById("lockError");
+
+if(wrongAttempts>=3){
+
+error.innerText="Even if you forget the password… I'll still wait for you.";
+
+}else{
+
+error.innerText="Hmm... that doesn't seem right";
+
+}
 
 let box=document.getElementById("lockBox");
 
@@ -317,6 +385,10 @@ setTimeout(()=>box.classList.remove("shake"),400);
 
 }
 
+}
+
+function showHint(){
+document.getElementById("hint").innerText="It's something sweet I used to call you.";
 }
 
 function createLockHeart(){
@@ -341,7 +413,7 @@ setTimeout(()=>heart.remove(),7000);
 
 setInterval(createLockHeart,600);
 
-/* ORIGINAL CODE CONTINUES */
+/* TITLE TYPING */
 
 function typeTitle(){
 
@@ -360,6 +432,8 @@ typing();
 }
 
 typeTitle();
+
+/* MAIN PAGE JS */
 
 let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
@@ -534,6 +608,8 @@ setTimeout(()=>spark.remove(),800);
 
 </body>
 </html>
+
+
 
 
 
