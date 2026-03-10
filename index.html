@@ -8,6 +8,94 @@
 
 <style>
 
+/* PASSWORD SCREEN */
+
+#lockScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+color:white;
+font-family:'Poppins',sans-serif;
+text-align:center;
+overflow:hidden;
+}
+
+#lockBox{
+background:rgba(0,0,0,0.45);
+padding:40px;
+border-radius:20px;
+backdrop-filter:blur(8px);
+box-shadow:0 0 40px rgba(0,0,0,0.4);
+}
+
+#lockBox input{
+padding:12px;
+font-size:16px;
+border-radius:10px;
+border:none;
+margin-top:10px;
+width:220px;
+text-align:center;
+}
+
+#lockBox button{
+margin-top:15px;
+padding:10px 25px;
+border:none;
+background:white;
+color:#ff4d6d;
+font-weight:600;
+border-radius:10px;
+cursor:pointer;
+}
+
+#lockError{
+margin-top:10px;
+color:#ffdede;
+}
+
+.shake{
+animation:shake 0.4s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-8px)}
+50%{transform:translateX(8px)}
+75%{transform:translateX(-8px)}
+100%{transform:translateX(0)}
+}
+
+.unlock{
+animation:unlockAnim 1s forwards;
+}
+
+@keyframes unlockAnim{
+0%{opacity:1;transform:scale(1)}
+100%{opacity:0;transform:scale(1.2)}
+}
+
+.lockHeart{
+position:absolute;
+bottom:-40px;
+animation:lockFloat linear forwards;
+}
+
+@keyframes lockFloat{
+from{transform:translateY(0);opacity:1}
+to{transform:translateY(-120vh);opacity:0}
+}
+
+/* ORIGINAL SITE STYLE */
+
 body{
 margin:0;
 height:100vh;
@@ -148,6 +236,27 @@ to{opacity:0;transform:scale(2);}
 
 <body>
 
+<!-- PASSWORD SCREEN -->
+
+<div id="lockScreen">
+
+<div id="lockBox">
+<h2>These pages are only for you ❤️</h2>
+<p>What animal did u compare me to??</p>
+
+<input type="password" id="lockPass" placeholder="Password">
+
+<br>
+
+<button onclick="unlockSite()">Open</button>
+
+<div id="lockError"></div>
+</div>
+
+</div>
+
+<!-- ORIGINAL PAGE -->
+
 <div class="container">
 
 <video id="topGif" autoplay muted loop>
@@ -177,6 +286,62 @@ I know I messed up badly… but I'm still hoping you'll hear me out.
 </div>
 
 <script>
+
+/* PASSWORD SYSTEM */
+
+function unlockSite(){
+
+let pass=document.getElementById("lockPass").value;
+
+if(pass==="Hamster"){
+
+let screen=document.getElementById("lockScreen");
+
+screen.classList.add("unlock");
+
+setTimeout(()=>{
+screen.style.display="none";
+},900);
+
+}
+
+else{
+
+document.getElementById("lockError").innerText="Wrong password";
+
+let box=document.getElementById("lockBox");
+
+box.classList.add("shake");
+
+setTimeout(()=>box.classList.remove("shake"),400);
+
+}
+
+}
+
+function createLockHeart(){
+
+let heart=document.createElement("div");
+
+heart.classList.add("lockHeart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(15+Math.random()*30)+"px";
+
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
+
+}
+
+setInterval(createLockHeart,600);
+
+/* ORIGINAL CODE CONTINUES */
 
 function typeTitle(){
 
@@ -369,6 +534,7 @@ setTimeout(()=>spark.remove(),800);
 
 </body>
 </html>
+
 
 
 
