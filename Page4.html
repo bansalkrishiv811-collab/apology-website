@@ -61,6 +61,7 @@ min-height:40px;
 .bandaid{
 position:absolute;
 width:40px;
+pointer-events:none;
 }
 
 .slipper{
@@ -162,8 +163,10 @@ bandaid.src="bandaid.png"
 
 bandaid.className="bandaid"
 
-bandaid.style.left=Math.random()*200+"px"
+bandaid.style.left=Math.random()*180+"px"
 bandaid.style.top=Math.random()*200+"px"
+
+bandaid.style.transform="rotate("+(Math.random()*60-30)+"deg)"
 
 document.querySelector("#me").parentElement.appendChild(bandaid)
 
@@ -199,4 +202,5 @@ setTimeout(()=>slipper.remove(),1000)
 </body>
 
 </html>
+
 
