@@ -173,6 +173,25 @@ transform:translate(0px,0px) rotate(0deg);
 
 }
 
+/*Next Page*/
+
+#nextPage{
+margin:40px auto;
+display:block;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff5e8a;
+font-size:16px;
+cursor:pointer;
+}
+
+body.fadeOut{
+opacity:0;
+transition:opacity 0.8s ease;
+}
+
 </style>
 </head>
 
@@ -283,6 +302,8 @@ transform:translate(0px,0px) rotate(0deg);
 Thank you for taking the time to see this.<br><br>
 Even if you're still upset, I hope one day we can talk again, even if I have to find more ways to apologize
 </div>
+
+<button id="nextPage">I would request you noww ki apna sara gussa ikhhatta kar lo, sara gussa aur jitna bhi tum hurt hui ho sab collect karo</button>
 
 <script>
 
@@ -432,10 +453,25 @@ music.play()
 
 })
 
+/*Next Page*/
+
+document.getElementById("nextPage").onclick=function(){
+
+document.body.classList.add("fadeOut")
+
+setTimeout(function(){
+
+window.location.href="page4.html"
+
+},800)
+
+}
+
 </script>
 
 </body>
 </html>
+
 
 
 
