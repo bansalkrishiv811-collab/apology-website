@@ -139,19 +139,38 @@ box-shadow:0 10px 40px rgba(0,0,0,0.4);
 .sticker{
 position:fixed;
 width:90px;
-pointer-events:none;
+z-index:5;
 opacity:0.9;
-animation:floatSticker 6s ease-in-out infinite alternate;
+animation:floatMove 12s linear infinite;
 }
 
 .s1{top:10%; left:5%;}
-.s2{top:25%; right:6%;}
-.s3{bottom:20%; left:8%;}
-.s4{bottom:15%; right:10%;}
+.s2{top:30%; right:10%;}
+.s3{bottom:25%; left:10%;}
+.s4{bottom:15%; right:5%;}
 
-@keyframes floatSticker{
-0%{transform:translateY(0px)}
-100%{transform:translateY(-20px)}
+@keyframes floatMove{
+
+0%{
+transform:translate(0px,0px) rotate(0deg);
+}
+
+25%{
+transform:translate(30px,-40px) rotate(5deg);
+}
+
+50%{
+transform:translate(-20px,-80px) rotate(-5deg);
+}
+
+75%{
+transform:translate(40px,-40px) rotate(4deg);
+}
+
+100%{
+transform:translate(0px,0px) rotate(0deg);
+}
+
 }
 
 </style>
@@ -417,6 +436,7 @@ music.play()
 
 </body>
 </html>
+
 
 
 
