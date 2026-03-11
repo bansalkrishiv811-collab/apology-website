@@ -50,38 +50,45 @@ font-size:36px;
 
 /* VIDEO SECTIONS */
 
-.section{
-display:flex;
-flex-direction:column;
-align-items:center;
-padding:80px 20px;
-opacity:0;
-transform:translateY(40px);
-transition:all 1s ease;
+.section{ 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:80px 20px;
+  opacity:1;
+  transform:none;
 }
 
-.section.show{
-opacity:1;
-transform:translateY(0);
+/* LANDSCAPE VIDEO  */
+
+.landscape{
+  width:700px;
+  max-width:90%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-/* LANDSCAPE VIDEO STYLE */
+/* PORTRAIT VIDEO */ 
+  
+  .portrait{
+    width:350px;
+    max-width:85%;
+    aspect-ratio:9/16;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  }
 
-video{
-width:700px;
-max-width:90%;
-aspect-ratio:16/9;
-object-fit:cover;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.4);
-}
-
-.caption{
-margin-top:15px;
-font-size:18px;
-max-width:600px;
-text-align:center;
-}
+  /* CAPTION */
+  
+  .caption{
+    margin-top:15px;
+    font-size:18px;
+    max-width:600px;
+    text-align:center;
+  }
 
 /* FLOATING HEARTS */
 
@@ -137,94 +144,94 @@ box-shadow:0 10px 40px rgba(0,0,0,0.4);
 <div id="bar"></div>
 </div>
 
-<div class="title">Moments That Made Me Smile</div>
+<div class="title">Your Moments That Still Made Me Smile</div>
 
 <!-- VIDEOS -->
 
 <div class="section">
-<video src="VMV1.mp4" autoplay muted loop playsinline></video>
-<div class="caption">This one always makes me smile.</div>
+<video class="landscape" src="VMV1.mp4" autoplay muted loop playsinline></video>
+<div class="caption">The first video you sent me, I was and am still mesmerized</div>
 </div>
 
 <div class="section">
-<video src="VMV2.mp4" autoplay muted loop playsinline></video>
-<div class="caption">I replayed this more times than I should admit.</div>
+<video class="portrait" src="VMV2.mp4" autoplay muted loop playsinline></video>
+<div class="caption">We can be again like this, when we were eager to talk to each other</div>
 </div>
 
 <div class="section">
-<video src="VMV3.mp4" autoplay muted loop playsinline></video>
-<div class="caption">This moment stayed in my mind.</div>
+<video class="landscape" src="VMV3.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Meri heart beat ruk gyi thhi 😭</div>
 </div>
 
 <div class="section">
-<video src="VMV4.mp4" autoplay muted loop playsinline></video>
-<div class="caption">One of my favorite videos of you.</div>
+<video class="landscape" src="VMV4.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I want more of these kisses from you</div>
 </div>
 
 <div class="section">
-<video src="VMV5.mp4" autoplay muted loop playsinline></video>
-<div class="caption">This always makes my day better.</div>
+<video class="portrait" src="VMV5.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Please hit me with these cute hands of yours as I have hurt you</div>
 </div>
 
 <div class="section">
-<video src="VMV6.mp4" autoplay muted loop playsinline></video>
-<div class="caption">Still one of the best memories.</div>
+<video class="landscape" src="VMV6.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I still remember you sent me numerous videos in this saree</div>
 </div>
 
 <div class="section">
-<video src="VMV7.mp4" autoplay muted loop playsinline></video>
-<div class="caption">I couldn't forget this moment.</div>
+<video class="landscape" src="VMV7.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Fuckkkk, I fumbled a baddie 💅</div>
 </div>
 
 <div class="section">
-<video src="VMV8.mp4" autoplay muted loop playsinline></video>
-<div class="caption">This video always cheers me up.</div>
+<video class="landscape" src="VMV8.mp4" autoplay muted loop playsinline></video>
+<div class="caption">These were the last videos you sent me, I had to watch it two times, I was lost in your bright eyes</div>
 </div>
 
 <div class="section">
-<video src="VMV9.mp4" autoplay muted loop playsinline></video>
-<div class="caption">One of the videos I kept replaying.</div>
+<video class="landscape" src="VMV9.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I remember when u were going to market, where you asked me which jeans to buy??.</div>
 </div>
 
 <div class="section">
-<video src="VMV10.mp4" autoplay muted loop playsinline></video>
-<div class="caption">I remember this one clearly.</div>
+<video class="landscape" src="VMV10.mp4" autoplay muted loop playsinline></video>
+<div class="caption">This was the one where you went to your village and sent me video </div>
 </div>
 
 <div class="section">
-<video src="VMV11.mp4" autoplay muted loop playsinline></video>
-<div class="caption">This moment felt special.</div>
+<video class="landscape" src="VMV11.mp4" autoplay muted loop playsinline></video>
+<div class="caption">When you changed from your kurti </div>
 </div>
 
 <div class="section">
-<video src="VMV12.mp4" autoplay muted loop playsinline></video>
-<div class="caption">Still makes me smile.</div>
+<video class="landscape" src="VMV12.mp4" autoplay muted loop playsinline></video>
+<div class="caption">This was the video which you sent me late at night while you were studying</div>
 </div>
 
 <div class="section">
-<video src="VMV13.mp4" autoplay muted loop playsinline></video>
-<div class="caption">A moment I really liked.</div>
+<video class="landscape" src="VMV13.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Yeh cheating hai, itni sundarrrr hawwww 😳</div>
 </div>
 
 <div class="section">
-<video src="VMV14.mp4" autoplay muted loop playsinline></video>
-<div class="caption">This one always cheers me up.</div>
+<video class="landscape" src="VMV14.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Damnnn, Curves 🤭🤭</div>
 </div>
 
 <div class="section">
-<video src="VMV15.mp4" autoplay muted loop playsinline></video>
-<div class="caption">I couldn't forget this.</div>
+<video class="portrait" src="VMV15.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I can't get you out of my mind</div>
 </div>
 
 <div class="section">
-<video src="VMV16.mp4" autoplay muted loop playsinline></video>
-<div class="caption">Mai kya bolu abb..</div>
+<video class="landscape" src="VMV16.mp4" autoplay muted loop playsinline></video>
+<div class="caption">You sent me this on Raksha Bandhan (Ofc not as sister bruhhhh)</div>
   
 <button id="surprise">Click for a surprise</button>
 
 <div id="messageBox">
 Thank you for taking the time to see this.<br><br>
-Even if you're still upset, I hope one day we can talk again.
+Even if you're still upset, I hope one day we can talk again, even if I have to find more ways to apologize
 </div>
 
 <script>
@@ -344,6 +351,7 @@ document.getElementById("messageBox").style.display="block"
 
 </body>
 </html>
+
 
 
 
