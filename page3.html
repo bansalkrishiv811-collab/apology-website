@@ -134,10 +134,36 @@ max-width:320px;
 box-shadow:0 10px 40px rgba(0,0,0,0.4);
 }
 
+/*Stickers*/
+
+.sticker{
+position:fixed;
+width:90px;
+pointer-events:none;
+opacity:0.9;
+animation:floatSticker 6s ease-in-out infinite alternate;
+}
+
+.s1{top:10%; left:5%;}
+.s2{top:25%; right:6%;}
+.s3{bottom:20%; left:8%;}
+.s4{bottom:15%; right:10%;}
+
+@keyframes floatSticker{
+0%{transform:translateY(0px)}
+100%{transform:translateY(-20px)}
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- Stickers -->
+<img src="MST1.png" class="sticker s1">
+<img src="MST2.png" class="sticker s2">
+<img src="MST3.png" class="sticker s3">
+<img src="MST4.png" class="sticker s4">
 
 <!-- MUSIC -->
 <audio id="bgMusic">
@@ -391,6 +417,7 @@ music.play()
 
 </body>
 </html>
+
 
 
 
