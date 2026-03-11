@@ -139,7 +139,12 @@ box-shadow:0 10px 40px rgba(0,0,0,0.4);
 
 <body>
 
-<div id="loader">
+<!-- MUSIC -->
+<audio id="bgMusic">
+<source src="Pyaar.mp3" type="audio/mpeg">
+</audio>
+
+  <div id="loader">
 <div>Loading all the moments…</div>
 <div id="bar"></div>
 </div>
@@ -343,14 +348,50 @@ setTimeout(()=>heart.remove(),800)
 
 })
 
+/* SURPRISE MESSAGE */
+
 document.getElementById("surprise").onclick=function(){
 document.getElementById("messageBox").style.display="block"
 }
+
+/* MUSIC LOOP PART */
+
+let music=document.getElementById("bgMusic")
+
+let startTime=60
+let endTime=136
+
+let started=false
+
+document.addEventListener("click",function(){
+
+if(!started){
+
+music.currentTime=startTime
+music.play()
+
+started=true
+
+}
+
+})
+
+music.addEventListener("timeupdate",function(){
+
+if(music.currentTime>=endTime){
+
+music.currentTime=startTime
+music.play()
+
+}
+
+})
 
 </script>
 
 </body>
 </html>
+
 
 
 
