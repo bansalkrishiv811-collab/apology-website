@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Okay You Can Hit Me</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-family:Poppins, sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+h1{
+margin-bottom:10px;
+}
+
+#counter{
+font-size:20px;
+margin-bottom:20px;
+}
+
+#me{
+width:260px;
+border-radius:20px;
+cursor:pointer;
+transition:transform 0.1s;
+position:relative;
+}
+
+.hit{
+animation:shake 0.3s;
+}
+
+@keyframes shake{
+
+0%{transform:translate(0)}
+25%{transform:translate(-10px)}
+50%{transform:translate(10px)}
+75%{transform:translate(-10px)}
+100%{transform:translate(0)}
+
+}
+
+#text{
+margin-top:20px;
+font-size:18px;
+max-width:320px;
+min-height:40px;
+}
+
+.bandaid{
+position:absolute;
+width:40px;
+pointer-events:none;
+}
+
+.slipper{
+position:fixed;
+font-size:40px;
+pointer-events:none;
+}
+
+#next{
+display:none;
+margin-top:30px;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff5e8a;
+font-size:16px;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>If you're angry… you can hit me 😅</h1>
+
+<div id="counter">Hits: 0</div>
+
+<div style="position:relative">
+<img src="Photograph.jpeg" id="me">
+</div>
+
+<div id="text">I probably deserve a few hits...</div>
+
+<button id="next" onclick="location.href='page5.html'">
+Continue
+</button>
+
+<script>
+
+let hits=0
+
+let messages=[
+
+"Okay okay that one hurt 😭",
+"I deserved that...",
+"Still angry? Go ahead.",
+"Alright I get it 😅",
+"I'll still wait for you though.",
+"That was a strong one 😭",
+"Fair enough...",
+"You can keep going.",
+"I'm not fighting back 😭",
+"Okay that was personal..."
+
+]
+
+let img=document.getElementById("me")
+
+img.onclick=function(){
+
+hits++
+
+document.getElementById("counter").innerText="Hits: "+hits
+
+img.classList.add("hit")
+
+setTimeout(()=>img.classList.remove("hit"),300)
+
+let randomMessage=messages[Math.floor(Math.random()*messages.length)]
+
+document.getElementById("text").innerText=randomMessage
+
+spawnSlipper()
+
+if(hits%5==0){
+
+addBandAid()
+
+}
+
+if(hits==50){
+
+document.getElementById("text").innerText=
+"Okay okay I surrender 😭 You win as alwways"
+
+document.getElementById("next").style.display="block"
+
+}
+
+}
+
+function addBandAid(){
+
+let bandaid=document.createElement("img")
+
+bandaid.src="bandaid.jpg"
+
+bandaid.className="bandaid"
+
+bandaid.style.left=Math.random()*180+"px"
+bandaid.style.top=Math.random()*200+"px"
+
+bandaid.style.transform="rotate("+(Math.random()*60-30)+"deg)"
+
+document.querySelector("#me").parentElement.appendChild(bandaid)
+
+}
+
+function spawnSlipper(){
+
+let slipper=document.createElement("div")
+
+slipper.innerHTML="🩴"
+
+slipper.className="slipper"
+
+slipper.style.left=Math.random()*window.innerWidth+"px"
+slipper.style.top="-50px"
+
+document.body.appendChild(slipper)
+
+let fall=slipper.animate([
+
+{transform:"translateY(0)",opacity:1},
+
+{transform:`translateY(${window.innerHeight}px)`,opacity:0}
+
+],{duration:1000})
+
+setTimeout(()=>slipper.remove(),1000)
+
+}
+
+</script>
+
+</body>
+
+</html>
+
+
