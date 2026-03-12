@@ -181,9 +181,10 @@ opacity:0.9;
 }
 
 .buttons{
-display:flex;
-gap:30px;
-justify-content:center;
+position:relative;
+width:500px;
+height:120px;
+margin:auto;
 }
 
 button{
@@ -195,20 +196,27 @@ letter-spacing:1px;
 width:230px;
 height:65px;
 cursor:pointer;
-transition:0.2s;
+transition:0.25s;
 }
 
+/* red button */
 #hellBtn{
 background:#ff3b3b;
 color:white;
 position:absolute;
+left:0;
+top:20px;
 }
 
+/* pink button */
 #hmmBtn{
 background:#ff7ad9;
 color:white;
+position:absolute;
+right:0;
+top:20px;
 }
-
+  
 .heart{
 position:absolute;
 bottom:-50px;
@@ -307,6 +315,16 @@ Need a hint?
 <source src="unlock.mp3" type="audio/mpeg">
 </audio>
 
+<!-- voice note when correct -->
+<audio id="correctVoice">
+<source src="correct.mp3" type="audio/mpeg">
+</audio>
+
+<!-- voice note when wrong -->
+<audio id="wrongVoice">
+<source src="wrong.mp3" type="audio/mpeg">
+</audio>
+  
 <!-- MAIN PAGE -->
 
 <div class="container">
@@ -350,6 +368,7 @@ let pass=document.getElementById("lockPass").value;
 if(pass==="Hamster"){
 
 document.getElementById("unlockSound").play();
+document.getElementById("correctVoice").play();
 
 let screen=document.getElementById("lockScreen");
 
@@ -364,6 +383,8 @@ screen.style.display="none";
 else{
 
 wrongAttempts++;
+
+document.getElementById("wrongVoice").play();
 
 let error=document.getElementById("lockError");
 
@@ -386,7 +407,7 @@ setTimeout(()=>box.classList.remove("shake"),400);
 }
 
 }
-
+  
 function showHint(){
 document.getElementById("hint").innerText="It's an animal..if u remember also first letter is capital";
 }
@@ -608,6 +629,7 @@ setTimeout(()=>spark.remove(),800);
 
 </body>
 </html>
+
 
 
 
