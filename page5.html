@@ -130,8 +130,8 @@ opacity:0;
 
 <script>
 
-let situps = 30;
-let goal = 50;
+let situps = 0;
+let goal = 30;
 
 function startSitups(){
 
@@ -147,19 +147,19 @@ document.getElementById("bar").style.width = percent + "%";
 
 /* messages */
 
-if(situps==35){
+if(situps==15){
 document.getElementById("message").innerText="Okay… this is getting tiring 😭";
 }
 
-if(situps==40){
+if(situps==20){
 document.getElementById("message").innerText="Are you enjoying this punishment?";
 }
 
-if(situps==45){
+if(situps==25){
 document.getElementById("message").innerText="5 more... please have mercy 😭";
 }
 
-if(situps>=50){
+if(situps>=30){
 
 document.getElementById("message").innerText="Okay okay! I surrender 😭 Please talk to me.";
 
@@ -171,7 +171,7 @@ clearInterval(interval);
 
 }
 
-},2000);
+},1000);
 
 }
 
@@ -209,11 +209,12 @@ setTimeout(()=>heart.remove(),6000);
 
 function goNext(){
 
-window.location.href="final.html";
+window.location.href="page6.html";
 
 }
 
 </script>
 
 </body>
+
 </html>
