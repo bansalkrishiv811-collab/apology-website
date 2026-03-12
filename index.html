@@ -375,7 +375,14 @@ let screen=document.getElementById("lockScreen");
 screen.classList.add("unlock");
 
 setTimeout(()=>{
+
 screen.style.display="none";
+
+/* start music AFTER unlock */
+music.currentTime=170;
+music.volume=0.7;
+music.play();
+
 },1000);
 
 }
@@ -389,13 +396,9 @@ document.getElementById("wrongVoice").play();
 let error=document.getElementById("lockError");
 
 if(wrongAttempts>=3){
-
 error.innerText="Even if you forget the password… I'll still wait for you.";
-
 }else{
-
 error.innerText="Hmm... that doesn't seem right";
-
 }
 
 let box=document.getElementById("lockBox");
@@ -465,12 +468,6 @@ let music=document.getElementById("bgMusic");
 
 let accepted=false;
 let hmmScale=1;
-
-document.addEventListener("click",()=>{
-music.currentTime=170;
-music.volume=0.7;
-music.play();
-},{once:true});
 
 music.addEventListener("timeupdate",()=>{
 if(accepted && music.currentTime>=203){
@@ -629,6 +626,7 @@ setTimeout(()=>spark.remove(),800);
 
 </body>
 </html>
+
 
 
 
