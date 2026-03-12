@@ -86,81 +86,118 @@ transform:scale(1.05);
 
 </div>
 
+<!-- Background Song -->
+<audio id="bgSong">
+<source src="Raabta.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
-let count = 0;
-let counter = document.getElementById("counter");
-let video = document.getElementById("sitVideo");
-let moreBtn = document.getElementById("moreBtn");
-let listenBtn = document.getElementById("listenBtn");
+let count = 0
+let counter = document.getElementById("counter")
+let video = document.getElementById("sitVideo")
+let moreBtn = document.getElementById("moreBtn")
+let listenBtn = document.getElementById("listenBtn")
+
+let firstPartFinished = false
+
 
 /* FIRST VIDEO COUNTER (0 → 30) */
 
-video.play();
+video.play()
 
 let interval = setInterval(function(){
 
-count++;
+if(count < 30){
 
-counter.innerText = count + " Sit-ups";
+count++
+counter.innerText = count + " Sit-ups"
 
-if(count >= 30){
-clearInterval(interval);
+}else{
+
+clearInterval(interval)
+
 }
 
-},1000);
+},1000)
+
 
 
 /* WHEN FIRST VIDEO ENDS */
 
 video.onended = function(){
 
-if(count >= 30){
-moreBtn.style.display="inline-block";
-}
+if(count === 30 && !firstPartFinished){
+
+firstPartFinished = true
+moreBtn.style.display="inline-block"
 
 }
 
+}
 
-/* SECOND PUNISHMENT */
+
+
+/* SECOND PUNISHMENT (30 → 50) */
 
 function morePunishment(){
 
-moreBtn.style.display="none";
+moreBtn.style.display="none"
 
-/* change video */
-
-video.src = "situps.mp4";
-video.play();
-
-/* continue counter 30 → 50 */
+video.currentTime = 0
+video.play()
 
 let interval2 = setInterval(function(){
 
-count++;
+if(count < 50){
 
-counter.innerText = count + " Sit-ups";
-
-if(count >= 50){
-
-clearInterval(interval2);
-
-listenBtn.style.display="inline-block";
+count++
+counter.innerText = count + " Sit-ups"
 
 }
 
-},1000);
+if(count === 50){
+
+clearInterval(interval2)
+
+listenBtn.style.display="inline-block"
 
 }
+
+},1000)
+
+}
+
 
 
 /* FINAL PAGE */
 
 function goNext(){
 
-window.location.href="final.html";
+window.location.href="final.html"
 
 }
+
+/* Background Songs */
+
+const song = document.getElementById("bgSong")
+
+const startTime = 00   // 0:00 in seconds
+const endTime = 90     // 1:30 in seconds
+
+song.currentTime = startTime
+song.play()
+
+song.addEventListener("timeupdate", function(){
+
+if(song.currentTime >= endTime){
+
+song.currentTime = startTime
+song.play()
+
+}
+
+})
 
 </script>
 
