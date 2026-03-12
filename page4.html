@@ -87,7 +87,7 @@ cursor:pointer;
 
 <body>
 
-<h1>If you're angry… you can hit me 😅Well actually do it 50 times..more if you want</h1>
+<h1>If you're angry… you can hit me 😅 Well actually do it 50 times.. more if you want</h1>
 
 <div id="counter">Hits: 0</div>
 
@@ -100,6 +100,20 @@ cursor:pointer;
 <button id="next" onclick="location.href='page5.html'">
 Continue
 </button>
+
+
+<!-- Voice notes -->
+
+<audio id="voice1" src="H1.mpeg"></audio>
+<audio id="voice2" src="H2.mpeg"></audio>
+<audio id="voice3" src="H3.mpeg"></audio>
+<audio id="voice4" src="H4.mpeg"></audio>
+<audio id="voice1" src="H5.mpeg"></audio>
+<audio id="voice1" src="H6.mpeg"></audio>
+<audio id="voice1" src="H7.mpeg"></audio>
+<audio id="voice1" src="H8.mpeg"></audio>
+<audio id="voice1" src="H9.mpeg"></audio>
+
 
 <script>
 
@@ -120,6 +134,15 @@ let messages=[
 
 ]
 
+let voices=[
+
+document.getElementById("voice1"),
+document.getElementById("voice2"),
+document.getElementById("voice3"),
+document.getElementById("voice4")
+
+]
+
 let img=document.getElementById("me")
 
 img.onclick=function(){
@@ -132,9 +155,22 @@ img.classList.add("hit")
 
 setTimeout(()=>img.classList.remove("hit"),300)
 
+
+/* RANDOM MESSAGE */
+
 let randomMessage=messages[Math.floor(Math.random()*messages.length)]
 
 document.getElementById("text").innerText=randomMessage
+
+
+/* RANDOM VOICE */
+
+let randomVoice=voices[Math.floor(Math.random()*voices.length)]
+
+randomVoice.pause()
+randomVoice.currentTime=0
+randomVoice.play()
+
 
 spawnSlipper()
 
@@ -147,13 +183,14 @@ addBandAid()
 if(hits==50){
 
 document.getElementById("text").innerText=
-"Okay okay I surrender 😭 You win as alwways"
+"Okay okay I surrender 😭 You win as always"
 
 document.getElementById("next").style.display="block"
 
 }
 
 }
+
 
 function addBandAid(){
 
@@ -172,6 +209,7 @@ document.querySelector("#me").parentElement.appendChild(bandaid)
 
 }
 
+
 function spawnSlipper(){
 
 let slipper=document.createElement("div")
@@ -185,7 +223,7 @@ slipper.style.top="-50px"
 
 document.body.appendChild(slipper)
 
-let fall=slipper.animate([
+slipper.animate([
 
 {transform:"translateY(0)",opacity:1},
 
@@ -200,8 +238,8 @@ setTimeout(()=>slipper.remove(),1000)
 </script>
 
 </body>
-
 </html>
+
 
 
 
