@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Punishment</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:'Poppins',sans-serif;
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+.container{
+max-width:700px;
+}
+
+video{
+width:320px;
+border-radius:16px;
+margin:20px 0;
+box-shadow:0 0 25px rgba(0,0,0,0.5);
+}
+
+h1{
+font-size:36px;
+}
+
+#counter{
+font-size:42px;
+font-weight:600;
+margin-top:10px;
+}
+
+.progress{
+width:100%;
+height:18px;
+background:rgba(255,255,255,0.3);
+border-radius:10px;
+margin-top:20px;
+overflow:hidden;
+}
+
+.progressFill{
+height:100%;
+width:0%;
+background:white;
+transition:0.4s;
+}
+
+#message{
+margin-top:15px;
+font-size:18px;
+min-height:25px;
+}
+
+button{
+border:none;
+border-radius:14px;
+padding:14px 28px;
+font-size:18px;
+cursor:pointer;
+margin-top:20px;
+background:white;
+color:#ff4d6d;
+font-weight:600;
+display:none;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+bottom:-50px;
+font-size:20px;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>My punishment 😔</h1>
+
+<p>Since I messed up… I will do sit-ups until you forgive me.</p>
+
+<video autoplay loop muted>
+<source src="Situps.mp4" type="video/mp4">
+</video>
+
+<div id="counter">30 Sit-ups</div>
+
+<div class="progress">
+<div class="progressFill" id="bar"></div>
+</div>
+
+<p id="message"></p>
+
+<button id="nextBtn" onclick="goNext()">Fine… I will listen ❤️</button>
+
+</div>
+
+<script>
+
+let situps = 30;
+let goal = 50;
+
+function startSitups(){
+
+let interval = setInterval(()=>{
+
+situps++;
+
+document.getElementById("counter").innerText = situps + " Sit-ups";
+
+let percent = (situps/goal)*100;
+
+document.getElementById("bar").style.width = percent + "%";
+
+/* messages */
+
+if(situps==35){
+document.getElementById("message").innerText="Okay… this is getting tiring 😭";
+}
+
+if(situps==40){
+document.getElementById("message").innerText="Are you enjoying this punishment?";
+}
+
+if(situps==45){
+document.getElementById("message").innerText="5 more... please have mercy 😭";
+}
+
+if(situps>=50){
+
+document.getElementById("message").innerText="Okay okay! I surrender 😭 Please talk to me.";
+
+heartExplosion();
+
+document.getElementById("nextBtn").style.display="inline-block";
+
+clearInterval(interval);
+
+}
+
+},2000);
+
+}
+
+window.onload=startSitups;
+
+/* hearts animation */
+
+function heartExplosion(){
+
+for(let i=0;i<120;i++){
+
+setTimeout(()=>{
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*40)+"px";
+
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+},i*15);
+
+}
+
+}
+
+function goNext(){
+
+window.location.href="final.html";
+
+}
+
+</script>
+
+</body>
+</html>
