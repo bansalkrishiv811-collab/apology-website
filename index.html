@@ -2,57 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<title>Mathematics Class XII Question Practice</title>
+<title>Last chance for ur cutie??</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* FIRST NORMAL PAGE */
-
-#projectPage{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:#f4f4f4;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:Arial;
-z-index:100000;
-}
-
-.projectBox{
-background:white;
-padding:40px;
-border-radius:12px;
-box-shadow:0 0 20px rgba(0,0,0,0.1);
-text-align:center;
-width:320px;
-color:black;
-}
-
-.projectBox input{
-padding:10px;
-width:80%;
-margin-top:10px;
-color:black;
-}
-
-.projectBox button{
-margin-top:15px;
-padding:10px 20px;
-cursor:pointer;
-background:#2e7dff;
-color:white;
-border:none;
-border-radius:8px;
-}
-
-/* SECOND PASSWORD SCREEN */
+/* PASSWORD SCREEN */
 
 #lockScreen{
 position:fixed;
@@ -61,7 +17,7 @@ left:0;
 width:100%;
 height:100%;
 background:linear-gradient(135deg,#ff758c,#ff7eb3);
-display:none;
+display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
@@ -93,6 +49,13 @@ padding:40px;
 border-radius:20px;
 backdrop-filter:blur(8px);
 box-shadow:0 0 40px rgba(0,0,0,0.4);
+animation:glow 2s ease-in-out infinite;
+}
+
+@keyframes glow{
+0%{box-shadow:0 0 20px rgba(255,255,255,0.2);}
+50%{box-shadow:0 0 40px rgba(255,100,150,0.8);}
+100%{box-shadow:0 0 20px rgba(255,255,255,0.2);}
 }
 
 #lockBox input{
@@ -103,6 +66,60 @@ border:none;
 margin-top:10px;
 width:220px;
 text-align:center;
+}
+
+#lockBox button{
+margin-top:15px;
+padding:10px 25px;
+border:none;
+background:white;
+color:#ff4d6d;
+font-weight:600;
+border-radius:10px;
+cursor:pointer;
+}
+
+#lockError{
+margin-top:10px;
+color:#ffdede;
+font-size:14px;
+}
+
+#hint{
+font-size:13px;
+opacity:0.85;
+}
+
+.shake{
+animation:shake 0.4s;
+}
+
+@keyframes shake{
+0%{transform:translateX(0)}
+25%{transform:translateX(-8px)}
+50%{transform:translateX(8px)}
+75%{transform:translateX(-8px)}
+100%{transform:translateX(0)}
+}
+
+.unlock{
+animation:unlockAnim 1s forwards;
+}
+
+@keyframes unlockAnim{
+0%{opacity:1;transform:scale(1)}
+100%{opacity:0;transform:scale(1.2)}
+}
+
+.lockHeart{
+position:absolute;
+bottom:-40px;
+animation:lockFloat linear forwards;
+}
+
+@keyframes lockFloat{
+from{transform:translateY(0);opacity:1}
+to{transform:translateY(-120vh);opacity:0}
 }
 
 /* MAIN PAGE */
@@ -122,6 +139,17 @@ background-position:center;
 cursor:none;
 }
 
+body::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.65));
+z-index:-1;
+}
+
 .container{
 text-align:center;
 max-width:700px;
@@ -131,6 +159,25 @@ max-width:700px;
 width:260px;
 border-radius:14px;
 margin-bottom:20px;
+animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0px);}
+}
+
+h1{
+font-size:36px;
+margin-bottom:10px;
+text-shadow:0 0 12px black;
+}
+
+.subtitle{
+font-size:18px;
+margin-bottom:40px;
+opacity:0.9;
 }
 
 .buttons{
@@ -152,6 +199,7 @@ cursor:pointer;
 transition:0.25s;
 }
 
+/* red button */
 #hellBtn{
 background:#ff3b3b;
 color:white;
@@ -160,6 +208,7 @@ left:0;
 top:20px;
 }
 
+/* pink button */
 #hmmBtn{
 background:#ff7ad9;
 color:white;
@@ -167,33 +216,59 @@ position:absolute;
 right:0;
 top:20px;
 }
+  
+.heart{
+position:absolute;
+bottom:-50px;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+from{transform:translateY(0);opacity:1;}
+to{transform:translateY(-120vh);opacity:0;}
+}
+
+#finalScreen{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:rgba(0,0,0,0.7);
+backdrop-filter:blur(8px);
+opacity:0;
+pointer-events:none;
+transition:1s;
+}
+
+#finalText{
+font-size:42px;
+margin-bottom:20px;
+}
+
+#countdown{
+font-size:60px;
+}
+
+.sparkle{
+position:absolute;
+pointer-events:none;
+animation:spark 0.8s forwards;
+}
+
+@keyframes spark{
+from{opacity:1;transform:scale(1);}
+to{opacity:0;transform:scale(2);}
+}
 
 </style>
 </head>
 
 <body>
-
-<!-- FIRST PASSWORD PAGE -->
-
-<div id="projectPage">
-
-<div class="projectBox">
-
-<h2>Mathematics Class XII Question Practice</h2>
-
-<p>Type my name below to open it</p>
-
-<input type="password" id="projectPass" placeholder="Enter password">
-
-<br>
-
-<button onclick="checkProjectPass()">Open Project</button>
-
-</div>
-
-</div>
-
-<!-- SECOND PASSWORD PAGE -->
 
 <div id="lockScreen">
 
@@ -205,36 +280,60 @@ top:20px;
 
 <p>What nickname did you give me first?</p>
 
+<p style="font-size:14px;opacity:0.8">
+Let's see if u still remember me and our moments 
+</p>
+
+<p style="font-size:13px;opacity:0.7">
+🔒 This page is protected because it means a lot to me.
+</p>
+
 <input type="password" id="lockPass" placeholder="Password">
 
 <br>
 
 <button onclick="unlockSite()">Open</button>
 
-<p id="lockError"></p>
+<br>
+
+<button onclick="showHint()" style="background:#ff8ab5;color:white">
+Need a hint?
+</button>
+
+<p id="hint"></p>
+
+<div id="lockError"></div>
 
 </div>
 
 </div>
 
-<!-- MUSIC -->
-
-<audio id="bgMusic">
-<source src="Iss Tarah.mp3" type="audio/mpeg">
+<audio id="unlockSound">
+<source src="unlock.mp3" type="audio/mpeg">
 </audio>
 
-<!-- MAIN PAGE -->
+<audio id="correctVoice">
+<source src="correct.mpeg" type="audio/mpeg">
+</audio>
 
+<audio id="wrongVoice">
+<source src="wrong.mpeg" type="audio/mpeg">
+</audio>
+  
 <div class="container">
 
 <video id="topGif" autoplay muted loop>
 <source src="Ham1.mp4" type="video/mp4">
 </video>
 
+<audio id="bgMusic">
+<source src="Iss Tarah.mp3" type="audio/mpeg">
+</audio>
+
 <h1 id="title"></h1>
 
 <p class="subtitle">
-I know I messed up badly… but I'm still hoping you'll hear your cutie out.
+I know I messed up badly… but I'm still hoping you'll hear your cutie out, plsssss...
 </p>
 
 <div class="buttons">
@@ -244,30 +343,16 @@ I know I messed up badly… but I'm still hoping you'll hear your cutie out.
 
 </div>
 
+<div id="finalScreen">
+<h2 id="finalText"></h2>
+<div id="countdown"></div>
+</div>
+
 <script>
 
-/* FIRST PAGE PASSWORD */
+let wrongAttempts=0;
 
-function checkProjectPass(){
-
-let pass=document.getElementById("projectPass").value;
-
-if(pass==="Krishiv"){
-
-document.getElementById("projectPage").style.display="none";
-document.getElementById("lockScreen").style.display="flex";
-
-}else{
-
-window.location.href="https://static.qumath.in/static/website/old-cdn-static/ncert-solutions/ncert-books-for-class-12-maths.pdf";
-
-}
-
-}
-
-/* SECOND PASSWORD */
-
-let music=document.getElementById("bgMusic");
+/* PASSWORD SYSTEM */
 
 function unlockSite(){
 
@@ -275,18 +360,75 @@ let pass=document.getElementById("lockPass").value;
 
 if(pass==="Hamster"){
 
-document.getElementById("lockScreen").style.display="none";
+document.getElementById("unlockSound").play();
+document.getElementById("correctVoice").play();
 
+let screen=document.getElementById("lockScreen");
+
+screen.classList.add("unlock");
+
+setTimeout(()=>{
+
+screen.style.display="none";
+
+/* start music AFTER unlock */
 music.currentTime=170;
+music.volume=0.7;
 music.play();
 
+},1000);
+
+}
+
+else{
+
+wrongAttempts++;
+
+document.getElementById("wrongVoice").play();
+
+let error=document.getElementById("lockError");
+
+if(wrongAttempts>=3){
+error.innerText="Even if you forget the password… I'll still wait for you.";
 }else{
+error.innerText="Hmm... that doesn't seem right";
+}
 
-document.getElementById("lockError").innerText="Hmm... that doesn't seem right";
+let box=document.getElementById("lockBox");
+
+box.classList.add("shake");
+
+setTimeout(()=>box.classList.remove("shake"),400);
 
 }
 
 }
+  
+function showHint(){
+document.getElementById("hint").innerText="It's an animal..if u remember also first letter is capital";
+}
+
+function createLockHeart(){
+
+let heart=document.createElement("div");
+
+heart.classList.add("lockHeart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(15+Math.random()*30)+"px";
+
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),7000);
+
+}
+
+setInterval(createLockHeart,600);
 
 /* TITLE TYPING */
 
@@ -296,25 +438,35 @@ let text="Can I get one last chance, maalkin";
 let i=0;
 
 function typing(){
-
 if(i<text.length){
 document.getElementById("title").innerHTML+=text.charAt(i);
 i++;
 setTimeout(typing,70);
 }
-
 }
 
 typing();
-
 }
 
 typeTitle();
 
-/* MOVING BUTTON */
+/* MAIN PAGE JS */
 
 let hellBtn=document.getElementById("hellBtn");
 let hmmBtn=document.getElementById("hmmBtn");
+let finalScreen=document.getElementById("finalScreen");
+let finalText=document.getElementById("finalText");
+let countdown=document.getElementById("countdown");
+let music=document.getElementById("bgMusic");
+
+let accepted=false;
+let hmmScale=1;
+
+music.addEventListener("timeupdate",()=>{
+if(accepted && music.currentTime>=203){
+window.location.href="page2.html";
+}
+});
 
 function moveHellButton(){
 
@@ -336,26 +488,137 @@ const dy=e.clientY-(rect.top+rect.height/2);
 const distance=Math.sqrt(dx*dx+dy*dy);
 
 if(distance<140){
+
 moveHellButton();
+
+hmmScale+=0.05;
+
+hmmBtn.style.transform=`scale(${hmmScale})`;
+
+if(hmmScale>1.6){
+hmmBtn.innerText="I will listen ❤️";
+}
+
 }
 
 });
 
-/* HMM BUTTON */
-
 hmmBtn.onclick=()=>{
 
-window.location.href="page2.html";
+accepted=true;
+
+finalScreen.style.opacity=1;
+finalScreen.style.pointerEvents="all";
+
+typeText("Thank you for listening ❤️");
+
+heartExplosion();
+
+startCountdown();
+
+};
+
+function typeText(text){
+
+let i=0;
+
+function typing(){
+if(i<text.length){
+finalText.innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,60);
+}
+}
+
+typing();
+}
+
+function startCountdown(){
+
+let count=3;
+
+countdown.innerHTML=count;
+
+let interval=setInterval(()=>{
+
+count--;
+
+if(count>0){
+countdown.innerHTML=count;
+}
+else{
+countdown.innerHTML="❤️";
+clearInterval(interval);
+}
+
+},1000);
 
 }
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*40)+"px";
+heart.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+
+}
+
+setInterval(createHeart,200);
+
+function heartExplosion(){
+
+for(let i=0;i<150;i++){
+
+setTimeout(()=>{
+
+const heart=document.createElement("div");
+
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(30+Math.random()*50)+"px";
+heart.style.animationDuration="3s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),5000);
+
+},i*8);
+
+}
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+
+let spark=document.createElement("div");
+
+spark.classList.add("sparkle");
+spark.innerHTML="✨";
+
+spark.style.left=e.pageX+"px";
+spark.style.top=e.pageY+"px";
+
+document.body.appendChild(spark);
+
+setTimeout(()=>spark.remove(),800);
+
+});
 
 </script>
 
 </body>
 </html>
-
-
-
 
 
 
