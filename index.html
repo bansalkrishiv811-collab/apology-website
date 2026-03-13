@@ -8,7 +8,7 @@
 
 <style>
 
-/* ---------------- NORMAL PROJECT PAGE ---------------- */
+/* FIRST NORMAL PAGE */
 
 #projectPage{
 position:fixed;
@@ -21,7 +21,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 font-family:Arial;
-z-index:999999;
+z-index:100000;
 }
 
 .projectBox{
@@ -30,24 +30,26 @@ padding:40px;
 border-radius:12px;
 box-shadow:0 0 20px rgba(0,0,0,0.1);
 text-align:center;
-max-width:400px;
+width:320px;
 }
 
-.projectBox h2{
-margin-bottom:10px;
+.projectBox input{
+padding:10px;
+width:80%;
+margin-top:10px;
 }
 
 .projectBox button{
-padding:10px 25px;
+margin-top:15px;
+padding:10px 20px;
+cursor:pointer;
+background:#2e7dff;
+color:white;
 border:none;
 border-radius:8px;
-background:#3a7afe;
-color:white;
-font-size:16px;
-cursor:pointer;
 }
 
-/* ---------------- PASSWORD SCREEN ---------------- */
+/* SECOND PASSWORD SCREEN */
 
 #lockScreen{
 position:fixed;
@@ -88,13 +90,6 @@ padding:40px;
 border-radius:20px;
 backdrop-filter:blur(8px);
 box-shadow:0 0 40px rgba(0,0,0,0.4);
-animation:glow 2s ease-in-out infinite;
-}
-
-@keyframes glow{
-0%{box-shadow:0 0 20px rgba(255,255,255,0.2);}
-50%{box-shadow:0 0 40px rgba(255,100,150,0.8);}
-100%{box-shadow:0 0 20px rgba(255,255,255,0.2);}
 }
 
 #lockBox input{
@@ -124,12 +119,7 @@ color:#ffdede;
 font-size:14px;
 }
 
-#hint{
-font-size:13px;
-opacity:0.85;
-}
-
-/* ---------------- MAIN PAGE ---------------- */
+/* MAIN PAGE */
 
 body{
 margin:0;
@@ -166,13 +156,6 @@ max-width:700px;
 width:260px;
 border-radius:14px;
 margin-bottom:20px;
-animation:float 3s ease-in-out infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-12px);}
-100%{transform:translateY(0px);}
 }
 
 h1{
@@ -222,40 +205,12 @@ right:0;
 top:20px;
 }
 
-/* ---------------- FINAL SCREEN ---------------- */
-
-#finalScreen{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(8px);
-opacity:0;
-pointer-events:none;
-transition:1s;
-}
-
-#finalText{
-font-size:42px;
-margin-bottom:20px;
-}
-
-#countdown{
-font-size:60px;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- NORMAL PROJECT PAGE -->
+<!-- FIRST PASSWORD PAGE -->
 
 <div id="projectPage">
 
@@ -263,17 +218,21 @@ font-size:60px;
 
 <h2>Computer Science Project</h2>
 
-<p>Topic: Interactive Web Design</p>
+<p>Teacher access required</p>
 
-<p>Click below to open the project presentation.</p>
+<input type="password" id="projectPass" placeholder="Enter password">
 
-<button onclick="openProject()">Open Project</button>
+<br>
+
+<button onclick="checkProjectPass()">Open Project</button>
+
+<p id="projectError"></p>
 
 </div>
 
 </div>
 
-<!-- PASSWORD SCREEN -->
+<!-- SECOND PASSWORD PAGE -->
 
 <div id="lockScreen">
 
@@ -291,33 +250,13 @@ font-size:60px;
 
 <button onclick="unlockSite()">Open</button>
 
-<br>
-
-<button onclick="showHint()" style="background:#ff8ab5;color:white">
-Need a hint?
-</button>
-
-<p id="hint"></p>
-
-<div id="lockError"></div>
+<p id="lockError"></p>
 
 </div>
 
 </div>
 
 <!-- AUDIO -->
-
-<audio id="unlockSound">
-<source src="unlock.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="correctVoice">
-<source src="correct.mpeg" type="audio/mpeg">
-</audio>
-
-<audio id="wrongVoice">
-<source src="wrong.mpeg" type="audio/mpeg">
-</audio>
 
 <audio id="bgMusic">
 <source src="Iss Tarah.mp3" type="audio/mpeg">
@@ -331,7 +270,7 @@ Need a hint?
 <source src="Ham1.mp4" type="video/mp4">
 </video>
 
-<h1 id="title"></h1>
+<h1>Can I get one last chance, maalkin</h1>
 
 <p class="subtitle">
 I know I messed up badly… but I'm still hoping you'll hear your cutie out.
@@ -344,144 +283,55 @@ I know I messed up badly… but I'm still hoping you'll hear your cutie out.
 
 </div>
 
-<div id="finalScreen">
-<h2 id="finalText"></h2>
-<div id="countdown"></div>
-</div>
-
 <script>
 
-/* OPEN NORMAL PAGE */
+/* FIRST PAGE PASSWORD */
 
-function openProject(){
+function checkProjectPass(){
+
+let pass=document.getElementById("projectPass").value;
+
+if(pass==="project2025"){  
 
 document.getElementById("projectPage").style.display="none";
 document.getElementById("lockScreen").style.display="flex";
 
 }
 
-/* PASSWORD SYSTEM */
+else{
 
-let wrongAttempts=0;
+window.location.href="https://www.wikipedia.org";
+
+}
+
+}
+
+/* SECOND PASSWORD */
+
 let music=document.getElementById("bgMusic");
+let wrongAttempts=0;
 
 function unlockSite(){
 
 let pass=document.getElementById("lockPass").value;
 
-if(pass==="Hamster"){
+if(pass==="Hamster"){  
 
-document.getElementById("unlockSound").play();
-document.getElementById("correctVoice").play();
-
-let screen=document.getElementById("lockScreen");
-
-screen.style.display="none";
+document.getElementById("lockScreen").style.display="none";
 
 music.currentTime=170;
 music.volume=0.7;
 music.play();
 
-}else{
+}
+
+else{
 
 wrongAttempts++;
 
-document.getElementById("wrongVoice").play();
-
-let error=document.getElementById("lockError");
-
-error.innerText="Hmm... that doesn't seem right";
+document.getElementById("lockError").innerText="Hmm... that doesn't seem right";
 
 }
-
-}
-
-function showHint(){
-
-document.getElementById("hint").innerText="It's an animal.. first letter is capital";
-
-}
-
-/* TITLE TYPING */
-
-function typeTitle(){
-
-let text="Can I get one last chance, maalkin";
-let i=0;
-
-function typing(){
-if(i<text.length){
-document.getElementById("title").innerHTML+=text.charAt(i);
-i++;
-setTimeout(typing,70);
-}
-}
-
-typing();
-
-}
-
-typeTitle();
-
-/* BUTTON LOGIC */
-
-let hellBtn=document.getElementById("hellBtn");
-let hmmBtn=document.getElementById("hmmBtn");
-let finalScreen=document.getElementById("finalScreen");
-let finalText=document.getElementById("finalText");
-let countdown=document.getElementById("countdown");
-
-let accepted=false;
-
-hmmBtn.onclick=()=>{
-
-accepted=true;
-
-finalScreen.style.opacity=1;
-finalScreen.style.pointerEvents="all";
-
-typeText("Thank you for listening ❤️");
-
-startCountdown();
-
-};
-
-function typeText(text){
-
-let i=0;
-
-function typing(){
-if(i<text.length){
-finalText.innerHTML+=text.charAt(i);
-i++;
-setTimeout(typing,60);
-}
-}
-
-typing();
-
-}
-
-function startCountdown(){
-
-let count=3;
-
-countdown.innerHTML=count;
-
-let interval=setInterval(()=>{
-
-count--;
-
-if(count>0){
-countdown.innerHTML=count;
-}
-else{
-countdown.innerHTML="❤️";
-clearInterval(interval);
-window.location.href="page2.html";
-}
-
-},1000);
 
 }
 
@@ -489,6 +339,7 @@ window.location.href="page2.html";
 
 </body>
 </html>
+
 
 
 
