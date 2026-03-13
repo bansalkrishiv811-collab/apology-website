@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class XII Maths NCERT Book PDF</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-box {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            border-top: 5px solid #1a73e8;
+        }
+
+        h2 {
+            color: #202124;
+            margin-bottom: 8px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        p {
+            color: #5f6368;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 24px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            outline: none;
+        }
+
+        input[type="password"]:focus {
+            border: 2px solid #1a73e8;
+            padding: 13px; /* Adjust for border width */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a73e8;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        button:hover {
+            background-color: #1557b0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .system-info {
+            margin-top: 30px;
+            font-size: 11px;
+            color: #70757a;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <h2>NCERT E-Library</h2>
+        <p>This document is encrypted. Please enter the sender's name to proceed to the PDF viewer.</p>
+        
+        <input type="password" id="entryKey" placeholder="Enter Document ID">
+        <button onclick="verifyAccess()">Access Document</button>
+        
+        <div class="system-info">
+            Digital Signature Verified: 2048-bit RSA<br>
+            Secure Portal &copy; 2026 Ministry of Education
+        </div>
+    </div>
+
+    <script>
+        function verifyAccess() {
+            const userInput = document.getElementById('entryKey').value;
+            
+            // CORRECT PASSWORD
+            if (userInput === "Krishiv") {
+                // Redirect to your special page
+                window.location.href = "page2.html";
+            } else {
+                // INCORRECT PASSWORD: Redirect to Maths NCERT
+                window.location.href = "https://static.qumath.in/static/website/old-cdn-static/ncert-solutions/ncert-books-for-class-12-maths.pdf";
+            }
+        }
+
+        // Allow "Enter" key submission
+        document.getElementById("entryKey").addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                verifyAccess();
+            }
+        });
+    </script>
+
+</body>
+</html>
