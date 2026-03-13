@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>
-<p style="color:black;font-size:14px">Mathematics Class XII Question Practice</p>
-</title>
+
+<title>Mathematics Class XII Question Practice</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
@@ -35,14 +34,14 @@ text-align:center;
 width:320px;
 color:black;
 }
-  
+
 .projectBox input{
 padding:10px;
 width:80%;
 margin-top:10px;
 color:black;
 }
-  
+
 .projectBox button{
 margin-top:15px;
 padding:10px 20px;
@@ -106,23 +105,6 @@ width:220px;
 text-align:center;
 }
 
-#lockBox button{
-margin-top:15px;
-padding:10px 25px;
-border:none;
-background:white;
-color:#ff4d6d;
-font-weight:600;
-border-radius:10px;
-cursor:pointer;
-}
-
-#lockError{
-margin-top:10px;
-color:#ffdede;
-font-size:14px;
-}
-
 /* MAIN PAGE */
 
 body{
@@ -140,17 +122,6 @@ background-position:center;
 cursor:none;
 }
 
-body::before{
-content:"";
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.65));
-z-index:-1;
-}
-
 .container{
 text-align:center;
 max-width:700px;
@@ -160,18 +131,6 @@ max-width:700px;
 width:260px;
 border-radius:14px;
 margin-bottom:20px;
-}
-
-h1{
-font-size:36px;
-margin-bottom:10px;
-text-shadow:0 0 12px black;
-}
-
-.subtitle{
-font-size:18px;
-margin-bottom:40px;
-opacity:0.9;
 }
 
 .buttons{
@@ -222,18 +181,13 @@ top:20px;
 
 <h2>Mathematics Class XII Question Practice</h2>
 
-<p>Type my name below to open it </p>
-<p style="font-size:14px;opacity:0.8">
-Make the first letter capital
-</p>
+<p>Type my name below to open it</p>
 
 <input type="password" id="projectPass" placeholder="Enter password">
 
 <br>
 
 <button onclick="checkProjectPass()">Open Project</button>
-
-<p id="projectError"></p>
 
 </div>
 
@@ -263,7 +217,7 @@ Make the first letter capital
 
 </div>
 
-<!-- AUDIO -->
+<!-- MUSIC -->
 
 <audio id="bgMusic">
 <source src="Iss Tarah.mp3" type="audio/mpeg">
@@ -277,7 +231,7 @@ Make the first letter capital
 <source src="Ham1.mp4" type="video/mp4">
 </video>
 
-<h1>Can I get one last chance, maalkin</h1>
+<h1 id="title"></h1>
 
 <p class="subtitle">
 I know I messed up badly… but I'm still hoping you'll hear your cutie out.
@@ -298,14 +252,12 @@ function checkProjectPass(){
 
 let pass=document.getElementById("projectPass").value;
 
-if(pass==="Krishiv"){  
+if(pass==="Krishiv"){
 
 document.getElementById("projectPage").style.display="none";
 document.getElementById("lockScreen").style.display="flex";
 
-}
-
-else{
+}else{
 
 window.location.href="https://static.qumath.in/static/website/old-cdn-static/ncert-solutions/ncert-books-for-class-12-maths.pdf";
 
@@ -316,25 +268,19 @@ window.location.href="https://static.qumath.in/static/website/old-cdn-static/nce
 /* SECOND PASSWORD */
 
 let music=document.getElementById("bgMusic");
-let wrongAttempts=0;
 
 function unlockSite(){
 
 let pass=document.getElementById("lockPass").value;
 
-if(pass==="Hamster"){  
+if(pass==="Hamster"){
 
 document.getElementById("lockScreen").style.display="none";
 
 music.currentTime=170;
-music.volume=0.7;
 music.play();
 
-}
-
-else{
-
-wrongAttempts++;
+}else{
 
 document.getElementById("lockError").innerText="Hmm... that doesn't seem right";
 
@@ -342,10 +288,73 @@ document.getElementById("lockError").innerText="Hmm... that doesn't seem right";
 
 }
 
+/* TITLE TYPING */
+
+function typeTitle(){
+
+let text="Can I get one last chance, maalkin";
+let i=0;
+
+function typing(){
+
+if(i<text.length){
+document.getElementById("title").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typing,70);
+}
+
+}
+
+typing();
+
+}
+
+typeTitle();
+
+/* MOVING BUTTON */
+
+let hellBtn=document.getElementById("hellBtn");
+let hmmBtn=document.getElementById("hmmBtn");
+
+function moveHellButton(){
+
+let x=Math.random()*(window.innerWidth-200);
+let y=Math.random()*(window.innerHeight-100);
+
+hellBtn.style.left=x+"px";
+hellBtn.style.top=y+"px";
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+
+const rect=hellBtn.getBoundingClientRect();
+
+const dx=e.clientX-(rect.left+rect.width/2);
+const dy=e.clientY-(rect.top+rect.height/2);
+
+const distance=Math.sqrt(dx*dx+dy*dy);
+
+if(distance<140){
+moveHellButton();
+}
+
+});
+
+/* HMM BUTTON */
+
+hmmBtn.onclick=()=>{
+
+window.location.href="page2.html";
+
+}
+
 </script>
 
 </body>
 </html>
+
+
 
 
 
