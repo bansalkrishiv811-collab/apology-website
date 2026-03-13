@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Moments With You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+color:white;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow-x:hidden;
+}
+
+/* LOADER */
+
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#ff758c;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+#bar{
+width:0%;
+height:6px;
+background:white;
+margin-top:20px;
+transition:width 0.3s;
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+padding:60px 20px;
+font-size:36px;
+}
+
+/* VIDEO SECTIONS */
+
+.section{ 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:80px 20px;
+  opacity:1;
+  transform:none;
+}
+
+/* LANDSCAPE VIDEO  */
+
+.landscape{
+  width:700px;
+  max-width:90%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* PORTRAIT VIDEO */ 
+  
+  .portrait{
+    width:350px;
+    max-width:85%;
+    aspect-ratio:9/16;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  }
+
+  /* CAPTION */
+  
+  .caption{
+    margin-top:15px;
+    font-size:18px;
+    max-width:600px;
+    text-align:center;
+  }
+
+/* FLOATING HEARTS */
+
+.heart{
+position:fixed;
+bottom:-10px;
+font-size:20px;
+animation:float 8s linear infinite;
+opacity:0.7;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh)}
+}
+
+/* SURPRISE BUTTON */
+
+#surprise{
+margin:80px auto;
+display:block;
+padding:12px 25px;
+border:none;
+border-radius:20px;
+background:white;
+color:#ff5e8a;
+font-size:16px;
+cursor:pointer;
+}
+
+#messageBox{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+text-align:center;
+max-width:320px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+
+/*Stickers*/
+
+.sticker{
+position:fixed;
+width:90px;
+z-index:5;
+opacity:0.9;
+animation:floatMove 12s linear infinite;
+}
+
+.s1{top:10%; left:5%;}
+.s2{top:30%; right:10%;}
+.s3{bottom:25%; left:10%;}
+.s4{bottom:15%; right:5%;}
+
+@keyframes floatMove{
+
+0%{
+transform:translate(0px,0px) rotate(0deg);
+}
+
+25%{
+transform:translate(30px,-40px) rotate(5deg);
+}
+
+50%{
+transform:translate(-20px,-80px) rotate(-5deg);
+}
+
+75%{
+transform:translate(40px,-40px) rotate(4deg);
+}
+
+100%{
+transform:translate(0px,0px) rotate(0deg);
+}
+
+}
+
+/*Next Page*/
+
+#nextPage{
+margin:60px auto;
+display:block;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff5e8a;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+#nextPage:hover{
+transform:scale(1.1);
+}
+
+.explodeHeart{
+position:fixed;
+left:50%;
+top:50%;
+font-size:24px;
+pointer-events:none;
+}
+  
+</style>
+</head>
+
+<body>
+
+<!-- Stickers -->
+<img src="MST1.png" class="sticker s1">
+<img src="MST2.png" class="sticker s2">
+<img src="MST3.png" class="sticker s3">
+<img src="MST4.png" class="sticker s4">
+
+<!-- MUSIC -->
+<audio id="bgMusic">
+<source src="YehChandSaRoshanChehra.mp3" type="audio/mpeg">
+</audio>
+
+  <div id="loader">
+<div>Loading all the moments…Also click anywhere on the page please</div>
+<div id="bar"></div>
+</div>
+
+<div class="title">Your Moments That Still Make Me Smile</div>
+
+<!-- VIDEOS -->
+
+<div class="section">
+<video class="landscape" src="VMV1.mp4" autoplay muted loop playsinline></video>
+<div class="caption">The first video you sent me, I was and am still mesmerized</div>
+</div>
+
+<div class="section">
+<video class="portrait" src="VMV2.mp4" autoplay muted loop playsinline></video>
+<div class="caption">We can be again like this, when we were eager to talk to each other</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV3.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Meri heart beat ruk gyi thhi 😭</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV4.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I want more of these kisses from you</div>
+</div>
+
+<div class="section">
+<video class="portrait" src="VMV5.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Please hit me with these cute hands of yours as I have hurt you</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV6.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I still remember you sent me numerous videos in this saree</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV7.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Fuckkkk, I fumbled a baddie 💅</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV8.mp4" autoplay muted loop playsinline></video>
+<div class="caption">These were the last videos you sent me, I had to watch it two times, I was lost in your bright eyes</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV9.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I remember when u were going to market, where you asked me which jeans to buy??.</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV10.mp4" autoplay muted loop playsinline></video>
+<div class="caption">This was the one where you went to your village and sent me video </div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV11.mp4" autoplay muted loop playsinline></video>
+<div class="caption">When you changed from your kurti </div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV12.mp4" autoplay muted loop playsinline></video>
+<div class="caption">This was the video which you sent me late at night while you were studying</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV13.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Yeh cheating hai, itni sundarrrr hawwww 😳</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV14.mp4" autoplay muted loop playsinline></video>
+<div class="caption">Damnnn, Curves 🤭🤭</div>
+</div>
+
+<div class="section">
+<video class="portrait" src="VMV15.mp4" autoplay muted loop playsinline></video>
+<div class="caption">I can't get you out of my mind</div>
+</div>
+
+<div class="section">
+<video class="landscape" src="VMV16.mp4" autoplay muted loop playsinline></video>
+<div class="caption">You sent me this on Raksha Bandhan (Ofc not as sister bruhhhh)</div>
+  
+<button id="surprise">Click for a surprise</button>
+
+<div id="messageBox">
+Thank you for taking the time to see this.<br><br>
+Even if you're still upset, I hope one day we can talk again, even if I have to find more ways to apologize
+</div>
+
+<button id="nextPage">I would request you noww ki apna sara gussa ikhhatta kar lo, sara gussa aur jitna bhi tum hurt hui ho sab collect karo</button>
+
+<script>
+
+/* LOADING BAR */
+
+let bar=document.getElementById("bar")
+let loader=document.getElementById("loader")
+
+let load=0
+let interval=setInterval(()=>{
+load+=10
+bar.style.width=load+"%"
+if(load>=100){
+clearInterval(interval)
+loader.style.display="none"
+}
+},200)
+
+/* SCROLL ANIMATION + AUTO PLAY */
+
+let sections=document.querySelectorAll(".section")
+
+window.addEventListener("scroll",()=>{
+sections.forEach(section=>{
+let top=section.getBoundingClientRect().top
+
+if(top<window.innerHeight-100){
+
+section.classList.add("show")
+
+let vid=section.querySelector("video")
+vid.play()
+
+}
+})
+})
+
+/* FLOATING HEARTS */
+
+function createHeart(){
+let heart=document.createElement("div")
+heart.classList.add("heart")
+heart.innerHTML="❤"
+heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=(10+Math.random()*20)+"px"
+heart.style.animationDuration=(5+Math.random()*5)+"s"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),8000)
+}
+
+setInterval(createHeart,700)
+
+/* CURSOR HEART TRAIL */
+
+document.addEventListener("mousemove",function(e){
+
+let heart=document.createElement("div")
+heart.innerHTML="❤"
+heart.style.position="fixed"
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+heart.style.color="white"
+heart.style.pointerEvents="none"
+heart.style.fontSize="16px"
+heart.style.opacity="0.8"
+heart.style.transition="all 1s ease"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.style.top=(e.clientY-40)+"px"
+heart.style.opacity="0"
+},10)
+
+setTimeout(()=>heart.remove(),1000)
+
+})
+
+/* CLICK HEART BURST */
+
+document.addEventListener("click",function(e){
+
+for(let i=0;i<8;i++){
+
+let heart=document.createElement("div")
+
+heart.innerHTML="❤"
+heart.style.position="fixed"
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+heart.style.fontSize="18px"
+heart.style.pointerEvents="none"
+heart.style.color="white"
+
+document.body.appendChild(heart)
+
+let x=(Math.random()-0.5)*200
+let y=(Math.random()-0.5)*200
+
+heart.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${x}px,${y}px)`,opacity:0}
+],{duration:800})
+
+setTimeout(()=>heart.remove(),800)
+
+}
+
+})
+
+/* SURPRISE MESSAGE */
+
+document.getElementById("surprise").onclick=function(){
+document.getElementById("messageBox").style.display="block"
+}
+
+/* MUSIC LOOP PART */
+
+let music=document.getElementById("bgMusic")
+
+let startTime=10
+let endTime=114
+
+let started=false
+
+document.addEventListener("click",function(){
+
+if(!started){
+
+music.currentTime=startTime
+music.play()
+
+started=true
+
+}
+
+})
+
+music.addEventListener("timeupdate",function(){
+
+if(music.currentTime>=endTime){
+
+music.currentTime=startTime
+music.play()
+
+}
+
+})
+
+/*Next Page*/
+
+document.getElementById("nextPage").onclick=function(){
+
+for(let i=0;i<40;i++){
+
+let heart=document.createElement("div")
+
+heart.innerHTML="❤"
+heart.className="explodeHeart"
+
+document.body.appendChild(heart)
+
+let x=(Math.random()-0.5)*800
+let y=(Math.random()-0.5)*600
+
+heart.animate(
+[
+{transform:"translate(-50%,-50%) scale(1)",opacity:1},
+{transform:`translate(${x}px,${y}px) scale(2)`,opacity:0}
+],
+{duration:1000,easing:"ease-out"}
+)
+
+setTimeout(()=>heart.remove(),1000)
+
+}
+
+setTimeout(()=>{
+
+window.location.href="page5.html"
+
+},900)
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
