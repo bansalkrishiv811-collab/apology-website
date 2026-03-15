@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why You Matter To Me ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --accent-color: #ff4d6d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            background: var(--primary-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.35) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            width: 90%;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        /* NEW: Style for the Top GIF */
+        .top-gif {
+            width: 120px; /* Adjust size as needed */
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: clamp(28px, 8vw, 42px);
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .intro {
+            font-weight: 300;
+            font-size: 16px;
+            opacity: 0.85;
+            margin-bottom: 35px;
+        }
+
+        #reasonBox {
+            font-size: clamp(18px, 5vw, 24px);
+            background: var(--glass-bg);
+            padding: 45px 30px;
+            border-radius: 28px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: white;
+            margin-left: 5px;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .controls {
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 16px 45px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            background: white;
+            color: var(--accent-color);
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        button:hover:not(:disabled) {
+            transform: translateY(-5px) scale(1.03);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #finishBtn {
+            display: none;
+            background: #ff3b3b;
+            color: white;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            z-index: 0;
+            pointer-events: none;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.7; }
+            100% { transform: translateY(-125vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYyZ3p6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/3ORIOfiv3FVwnHXasw/giphy.gif" alt="Cute Heart" class="top-gif">
+        
+        <h1>Why You Matter To Me ❤️</h1>
+        <p class="intro">A few reminders of the person I never want to lose...</p>
+
+        <div id="reasonBox">
+            <span id="typewriter">Click the button to begin...</span><span class="cursor" id="cursor"></span>
+        </div>
+
+        <div class="controls">
+            <button id="nextBtn" onclick="nextReason()">Start Reflection</button>
+            <button id="finishBtn" onclick="goNext()">One Last Thing...</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="Iss Tarah.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const reasons = [
+            "You somehow make even boring conversations fun.",
+            "You understand things about me that others don't.",
+            "You are stronger than you think.",
+            "You care about people even when you pretend you don't.",
+            "You made some of my normal days special.",
+            "I still smile when I remember our conversations.",
+            "You matter to me more than I ever said.",
+            "I regret hurting someone like you.",
+            "I genuinely miss talking to you.",
+            "And honestly… I just don't want to lose you."
+        ];
+
+        let index = 0;
+        let isTyping = false;
+        const typewriterEl = document.getElementById("typewriter");
+        const nextBtn = document.getElementById("nextBtn");
+        const finishBtn = document.getElementById("finishBtn");
+        const audio = document.getElementById("bgMusic");
+
+        function typeWriter(text, i, callback) {
+            if (i < text.length) {
+                typewriterEl.innerHTML = "❤️ " + text.substring(0, i + 1);
+                setTimeout(() => typeWriter(text, i + 1, callback), 45);
+            } else if (typeof callback == 'function') {
+                setTimeout(callback, 800);
+            }
+        }
+
+        function nextReason() {
+            if (isTyping) return;
+            if (index === 0) {
+                audio.play().catch(e => console.log("Audio play deferred"));
+            }
+            isTyping = true;
+            nextBtn.disabled = true;
+            nextBtn.innerText = "Listening...";
+            typewriterEl.innerHTML = ""; 
+            typeWriter(reasons[index], 0, () => {
+                index++;
+                isTyping = false;
+                if (index >= reasons.length) {
+                    nextBtn.style.display = "none";
+                    finishBtn.style.display = "inline-block";
+                } else {
+                    nextBtn.disabled = false;
+                    nextBtn.innerText = "Next Reason";
+                }
+            });
+        }
+
+        function goNext() {
+            document.body.style.transition = "opacity 1s";
+            document.body.style.opacity = "0";
+            setTimeout(() => {
+                window.location.href = "final.html";
+            }, 1000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 7000);
+        }
+        setInterval(createHeart, 600);
+    </script>
+</body>
+</html>
