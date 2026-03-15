@@ -168,7 +168,7 @@
 <body>
 
     <div class="container">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHYyZ3p6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6Znd6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/3ORIOfiv3FVwnHXasw/giphy.gif" alt="Cute Heart" class="top-gif">
+        <img src="Ham2.mp4" alt="Cute Heart" class="top-gif">
         
         <h1>Why You Matter To Me ❤️</h1>
         <p class="intro">A few reminders of the person I never want to lose...</p>
@@ -178,22 +178,22 @@
         </div>
 
         <div class="controls">
-            <button id="nextBtn" onclick="nextReason()">Start Reflection</button>
+            <button id="nextBtn" onclick="nextReason()">First thing</button>
             <button id="finishBtn" onclick="goNext()">One Last Thing...</button>
         </div>
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="Iss Tarah.mp3" type="audio/mpeg">
+        <source src="Pyaar.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         const reasons = [
-            "You somehow make even boring conversations fun.",
+            "You haven't judged me no matter what I confess to you",
             "You understand things about me that others don't.",
-            "You are stronger than you think.",
+            "You are stronger and more good at heart than you think.",
             "You care about people even when you pretend you don't.",
-            "You made some of my normal days special.",
+            "You made all the days we talked special.",
             "I still smile when I remember our conversations.",
             "You matter to me more than I ever said.",
             "I regret hurting someone like you.",
@@ -207,6 +207,11 @@
         const nextBtn = document.getElementById("nextBtn");
         const finishBtn = document.getElementById("finishBtn");
         const audio = document.getElementById("bgMusic");
+
+     // --- MUSIC SETTINGS ---
+    // Change this number to the second you want the music to start 
+    // (e.g., 60 for 1 minute in, 45 for 45 seconds in)
+    const startTime = 15;
 
         function typeWriter(text, i, callback) {
             if (i < text.length) {
